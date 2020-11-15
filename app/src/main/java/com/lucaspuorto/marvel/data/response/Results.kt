@@ -14,5 +14,26 @@ data class Results(
     @SerializedName("series") val series: Series,
     @SerializedName("stories") val stories: Stories,
     @SerializedName("thumbnail") val thumbnail: Thumbnail,
-    @SerializedName("urls") val urls: List<Url>
+    @SerializedName("urls") val urls: List<Url>,
+
+    @SerializedName("characters") val characters: Characters,
+    @SerializedName("collectedIssues") val collectedIssues: List<Item>,
+    @SerializedName("collections") val collections: List<Item>,
+    @SerializedName("creators") val creators: Characters,
+    @SerializedName("dates") val dates: List<Date>,
+    @SerializedName("diamondCode") val diamondCode: String,
+    @SerializedName("digitalId") val digitalId: Int,
+    @SerializedName("ean") val ean: String,
+    @SerializedName("format") val format: String,
+    @SerializedName("images") val images: List<Thumbnail>,
+    @SerializedName("isbn") val isbn: String,
+    @SerializedName("issn") val issn: String,
+    @SerializedName("issueNumber") val issueNumber: Int,
+    @SerializedName("pageCount") val pageCount: Int,
+    @SerializedName("prices") val prices: List<Price>,
+    @SerializedName("textObjects") val textObjects: List<TextObject>,
+    @SerializedName("title") val title: String,
+    @SerializedName("upc") val upc: String,
+    @SerializedName("variantDescription") val variantDescription: String,
+    @SerializedName("variants") val variants: List<Item>
 ) : Serializable
