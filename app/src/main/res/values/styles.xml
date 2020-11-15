@@ -49,4 +49,9 @@
         <item name="android:textStyle">normal</item>
         <item name="android:lineSpacingExtra">4sp</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>
