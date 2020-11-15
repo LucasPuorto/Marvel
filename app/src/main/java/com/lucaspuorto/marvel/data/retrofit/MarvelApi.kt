@@ -7,8 +7,8 @@ import retrofit2.http.Query
 interface MarvelApi {
 
     @GET("characters")
-    fun getCharacters(
-        @Query("nameStartsWith") characterName: String,
+    suspend fun getCharacters(
+        @Query("name") characterName: String,
         @Query("ts") ts: String,
         @Query("hash") hash: String,
         @Query("apikey") apiKey: String,
