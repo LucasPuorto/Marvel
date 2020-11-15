@@ -15,4 +15,7 @@ class MarvelRepository {
 
     suspend fun fetchCharacter(characterName: String): MarvelCharacterResponse =
         service.getCharacter(characterName, ts, hash, PUBLIC_KEY)
+
+    suspend fun fetchComicsList(characterId: Int): MarvelCharacterResponse =
+        service.getComicsList(characterId, ts, hash, PUBLIC_KEY)
 }
