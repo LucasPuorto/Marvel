@@ -7,4 +7,46 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/red_A700</item>
     </style>
+
+
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="android:theme">@style/TextInputLayout.CursorColor</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxStrokeColor">@color/text_input_layout_colors</item>
+        <item name="boxStrokeErrorColor">@color/red_900</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="errorTextAppearance">@style/HintInside</item>
+        <item name="errorTextColor">@color/red_900</item>
+        <item name="hintAnimationEnabled">true</item>
+        <item name="hintTextAppearance">@style/HintLabel</item>
+        <item name="hintTextColor">@color/red_A700</item>
+    </style>
+
+    <style name="TextInputLayout.EditText">
+        <item name="android:textAppearance">@style/HintInside</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextInputLayout.CursorColor">
+        <item name="colorPrimary">@color/red_A700</item>
+    </style>
+
+    <style name="HintInside">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="HintLabel">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
 </resources>
