@@ -1,4 +1,4 @@
-package com.lucaspuorto.marvel.retrofit
+package com.lucaspuorto.marvel.data.retrofit
 
 import com.lucaspuorto.marvel.utils.TIMEOUT_30
 import okhttp3.OkHttpClient

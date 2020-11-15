@@ -1,7 +1,7 @@
-package com.lucaspuorto.marvel.repository
+package com.lucaspuorto.marvel.data.repository
 
-import com.lucaspuorto.marvel.retrofit.MarvelApi
-import com.lucaspuorto.marvel.retrofit.RetrofitService
+import com.lucaspuorto.marvel.data.retrofit.MarvelApi
+import com.lucaspuorto.marvel.data.retrofit.RetrofitService
 import com.lucaspuorto.marvel.utils.BASE_URL
 import com.lucaspuorto.marvel.utils.Md5
 
