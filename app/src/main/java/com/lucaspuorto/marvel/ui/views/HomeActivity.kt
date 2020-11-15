@@ -22,11 +22,11 @@ import com.lucaspuorto.marvel.presentation.StateLoading
 import com.lucaspuorto.marvel.presentation.StateResponse
 import com.lucaspuorto.marvel.presentation.StateSuccess
 import com.lucaspuorto.marvel.presentation.viewdata.CharacterViewData
-import com.lucaspuorto.marvel.presentation.viewmodel.CharactersViewModel
+import com.lucaspuorto.marvel.presentation.viewmodel.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
 
-    private val viewModel: CharactersViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     private val loading: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoading) }
     private val group: Group by lazy { findViewById(R.id.group) }
@@ -62,26 +62,26 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupObserves() {
-        viewModel.characterListLiveData.observe(this@HomeActivity, Observer { state -> onGetCharactersResponse(state) })
+        viewModel.characterLiveData.observe(this@HomeActivity, Observer { state -> onGetCharacterResponse(state) })
     }
 
-    private fun onGetCharactersResponse(state: StateResponse<CharacterViewData>) {
+    private fun onGetCharacterResponse(state: StateResponse<CharacterViewData>) {
         state.let {
             when (state) {
-                is StateLoading -> onGetCharactersLoading()
-                is StateSuccess -> onGetCharactersSuccess(state.data)
-                is StateError -> onGetCharactersError()
+                is StateLoading -> onGetCharacterLoading()
+                is StateSuccess -> onGetCharacterSuccess(state.data)
+                is StateError -> onGetCharacterError()
             }
         }
     }
 
-    private fun onGetCharactersLoading() {
+    private fun onGetCharacterLoading() {
         loading.visibility = View.VISIBLE
         group.visibility = View.GONE
         comicsErrorView.visibility = View.GONE
     }
 
-    private fun onGetCharactersSuccess(data: CharacterViewData) {
+    private fun onGetCharacterSuccess(data: CharacterViewData) {
         loading.visibility = View.GONE
         group.visibility = View.VISIBLE
         comicsErrorView.visibility = View.GONE
@@ -94,7 +94,7 @@ class HomeActivity : AppCompatActivity() {
         characterDescription.text = data.characterDescription
     }
 
-    private fun onGetCharactersError() {
+    private fun onGetCharacterError() {
         loading.visibility = View.GONE
         group.visibility = View.GONE
         comicsErrorView.visibility = View.VISIBLE

@@ -3,7 +3,7 @@ package com.lucaspuorto.marvel.data.response
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class MarvelCharactersResponse(
+data class MarvelCharacterResponse(
     @SerializedName("attributionHTML") val attributionHTML: String,
     @SerializedName("attributionText") val attributionText: String,
     @SerializedName("code") val code: Int,

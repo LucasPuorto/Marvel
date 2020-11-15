@@ -4,7 +4,7 @@ import com.lucaspuorto.marvel.data.response.Results
 import com.lucaspuorto.marvel.presentation.viewdata.CharacterViewData
 import com.lucaspuorto.marvel.utils.CHARACTER_LIST_FIRST_POSITION
 
-object CharacterConsultViewMapper {
+object CharacterViewMapper {
 
     fun map(results: List<Results>): CharacterViewData =
         CharacterViewData(
