@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Marvel</string>
+
+    //HOME
+    <string name="home_comics_label">Comics</string>
+    <string name="search_character">procure seu heroi</string>
+    <string name="character_loading_error">erro na busca do seu personagem, procure novamente com o nome correto</string>
+
+    //ERROR
+    <string name="error_comics_loading_error">ERROR ON LOADING COMICS LIST</string>
 </resources>

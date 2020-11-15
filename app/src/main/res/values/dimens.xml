@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //MARGIN
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+
+    //PADDING
+    <dimen name="padding_24">24dp</dimen>
+
+    //FONT SIZE
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+
+    //LINE SPACING EXTRA
+    <dimen name="line_spacing_extra_default">4sp</dimen>
+
+    //WIDTH
+    <dimen name="match_constraints">0dp</dimen>
+    <dimen name="error_logo_width">60dp</dimen>
+    <dimen name="comic_image_width">80dp</dimen>
+    <dimen name="home_character_image_width">250dp</dimen>
+
+    //HEIGHT
+    <dimen name="home_logo_height">56dp</dimen>
+    <dimen name="error_logo_height">60dp</dimen>
+    <dimen name="comic_image_height">80dp</dimen>
+    <dimen name="home_character_image_height">250dp</dimen>
+
+    //CORNER RADIUS
+    <dimen name="corner_radius">16dp</dimen>
+    //ELEVATION
+    <dimen name="elevation">6dp</dimen>
+
+    //GUIDELINE
+    <dimen name="guideline_default_start">24dp</dimen>
+    <dimen name="guideline_default_end">24dp</dimen>\
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue_grey_800"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivComicImage"
+        android:layout_width="@dimen/error_logo_width"
+        android:layout_height="@dimen/error_logo_height"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_8"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_error" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:text="@string/error_comics_loading_error"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_16" />
+</LinearLayout>
