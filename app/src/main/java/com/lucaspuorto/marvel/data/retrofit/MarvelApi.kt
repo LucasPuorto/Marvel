@@ -12,6 +12,6 @@ interface MarvelApi {
         @Query("ts") ts: String,
         @Query("hash") hash: String,
         @Query("apikey") apiKey: String,
-        @Query("limit") limit: Int = 100
+        @Query("limit") limit: Int = 1
     ): MarvelCharactersResponse
 }
