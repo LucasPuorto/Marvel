@@ -2,14 +2,15 @@ package com.lucaspuorto.marvel.presentation.viewmapper
 
 import com.lucaspuorto.marvel.data.response.Results
 import com.lucaspuorto.marvel.presentation.viewdata.CharacterViewData
+import com.lucaspuorto.marvel.utils.CHARACTER_LIST_FIRST_POSITION
 
 object CharacterConsultViewMapper {
 
     fun map(results: List<Results>): CharacterViewData =
         CharacterViewData(
-            characterName = results[0].name,
-            characterImageUrl = results[0].thumbnail.path + results[0].thumbnail.extension,
-            characterDescription = results[0].description,
-            characterId = results[0].id
+            characterName = results[CHARACTER_LIST_FIRST_POSITION].name,
+            characterImageUrl = "${results[CHARACTER_LIST_FIRST_POSITION].thumbnail.path}.${results[CHARACTER_LIST_FIRST_POSITION].thumbnail.extension}",
+            characterDescription = results[CHARACTER_LIST_FIRST_POSITION].description,
+            characterId = results[CHARACTER_LIST_FIRST_POSITION].id
         )
 }
