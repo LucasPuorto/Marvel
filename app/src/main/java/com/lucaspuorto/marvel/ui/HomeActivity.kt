@@ -1,7 +1,8 @@
-package com.lucaspuorto.marvel
+package com.lucaspuorto.marvel.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.lucaspuorto.marvel.R
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

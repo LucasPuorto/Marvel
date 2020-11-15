@@ -1,4 +1,4 @@
-package com.lucaspuorto.marvel
+package com.lucaspuorto.marvel.ui
 
 import android.content.Intent
 import android.os.Bundle
