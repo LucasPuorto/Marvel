@@ -10,7 +10,7 @@
         android:layout_width="120dp"
         android:layout_height="24dp"
         android:layout_marginTop="@dimen/margin_16"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +20,7 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="@dimen/margin_16"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/placeholderCharacterName" />
@@ -30,7 +30,7 @@
         android:layout_width="0dp"
         android:layout_height="128dp"
         android:layout_marginTop="@dimen/margin_16"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/placeholderCharacterImage" />
@@ -40,7 +40,7 @@
         android:layout_width="120dp"
         android:layout_height="24dp"
         android:layout_marginTop="@dimen/margin_24"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/placeholderCharacterDescription" />
 
@@ -50,7 +50,7 @@
         android:layout_height="88dp"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginBottom="@dimen/margin_24"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/placeholderComicsLabel"
@@ -61,7 +61,7 @@
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginStart="@dimen/margin_8"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
         app:layout_constraintStart_toEndOf="@id/placeholderComicsItemOne"
         app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
@@ -71,7 +71,7 @@
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginStart="@dimen/margin_8"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
         app:layout_constraintStart_toEndOf="@id/placeholderComicsItemTwo"
         app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
@@ -81,7 +81,7 @@
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginStart="@dimen/margin_8"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
         app:layout_constraintStart_toEndOf="@id/placeholderComicsItemThree"
         app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
@@ -91,7 +91,7 @@
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginStart="@dimen/margin_8"
-        android:background="@color/red_A700"
+        android:background="@color/grey_400"
         app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
         app:layout_constraintStart_toEndOf="@id/placeholderComicsItemFour"
         app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
