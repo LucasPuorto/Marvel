@@ -4,5 +4,5 @@ data class CharacterViewData(
     val characterName: String,
     val characterImageUrl: String,
     val characterDescription: String,
-    val characterId: Int
+    val characterId: String
 )

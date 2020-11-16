@@ -40,7 +40,7 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun fetchComics(characterId: Int) = viewModelScope.launch {
+    fun fetchComics(characterId: String) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             _comicsListLiveData.postValue(StateLoading())
             try {

@@ -18,7 +18,7 @@ interface MarvelApi {
 
     @GET("characters/{characterId}/comics")
     suspend fun getComicsList(
-        @Path("characterId") characterId: Int,
+        @Path("characterId") characterId: String,
         @Query("ts") ts: String,
         @Query("hash") hash: String,
         @Query("apikey") apiKey: String
