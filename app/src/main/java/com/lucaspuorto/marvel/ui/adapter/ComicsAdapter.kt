@@ -3,6 +3,7 @@ package com.lucaspuorto.marvel.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -29,6 +30,9 @@ class ComicsAdapter :
 
     inner class DetailsCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(comic: ComicsListViewData) {
+
+            itemView.findViewById<TextView>(R.id.ivComicTitle).text = comic.comicTitle
+
             Glide.with(itemView)
                 .load(comic.comicImage)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
