@@ -111,7 +111,7 @@ class HomeActivity : AppCompatActivity() {
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(characterImage)
         characterDescription.text = data.characterDescription
-        viewModel.fetchComics(data.characterId)
+        checkConnection(this@HomeActivity, snackBarView, resources) { viewModel.fetchComics(data.characterId) }
     }
 
     private fun onGetCharacterError() {
