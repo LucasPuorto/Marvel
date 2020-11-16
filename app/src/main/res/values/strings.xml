@@ -4,9 +4,9 @@
     //HOME
     <string name="home_comics_label">Comics</string>
     <string name="search_character">procure seu heroi</string>
-    <string name="character_loading_error">erro na busca do seu personagem, procure novamente com o nome correto</string>
+    <string name="character_loading_error">erro na busca do seu heroi, procure novamente com o nome correto</string>
 
     //ERROR
-    <string name="error_comics_loading_error">ERROR ON LOADING COMICS LIST</string>
+    <string name="error_comics_loading_error">erro ao carregar lista de hqs</string>
     <string name="error_network">sem acesso a internet</string>
 </resources>
