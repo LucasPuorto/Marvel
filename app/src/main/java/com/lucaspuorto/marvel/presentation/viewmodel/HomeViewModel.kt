@@ -10,7 +10,9 @@ import com.lucaspuorto.marvel.presentation.StateLoading
 import com.lucaspuorto.marvel.presentation.StateResponse
 import com.lucaspuorto.marvel.presentation.StateSuccess
 import com.lucaspuorto.marvel.presentation.viewdata.CharacterViewData
+import com.lucaspuorto.marvel.presentation.viewdata.ComicsListViewData
 import com.lucaspuorto.marvel.presentation.viewmapper.CharacterViewMapper
+import com.lucaspuorto.marvel.presentation.viewmapper.ComicsListViewMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,6 +24,9 @@ class HomeViewModel : ViewModel() {
     private val _characterLiveData: MutableLiveData<StateResponse<CharacterViewData>> = MutableLiveData()
     val characterLiveData: LiveData<StateResponse<CharacterViewData>> get() = _characterLiveData
 
+    private val _comicsListLiveData: MutableLiveData<StateResponse<List<ComicsListViewData>>> = MutableLiveData()
+    val comicsListLiveData: LiveData<StateResponse<List<ComicsListViewData>>> get() = _comicsListLiveData
+
     fun fetchCharacter(characterName: String) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             _characterLiveData.postValue(StateLoading())
@@ -31,6 +36,19 @@ class HomeViewModel : ViewModel() {
                 _characterLiveData.postValue(StateSuccess(viewData))
             } catch (error: Exception) {
                 _characterLiveData.postValue(StateError(error))
+            }
+        }
+    }
+
+    fun fetchComics(characterId: Int) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            _comicsListLiveData.postValue(StateLoading())
+            try {
+                val response = repository.fetchComicsList(characterId)
+                val viewData = ComicsListViewMapper.map(response.data.results)
+                _comicsListLiveData.postValue(StateSuccess(viewData))
+            } catch (error: Exception) {
+                _comicsListLiveData.postValue(StateError(error))
             }
         }
     }
