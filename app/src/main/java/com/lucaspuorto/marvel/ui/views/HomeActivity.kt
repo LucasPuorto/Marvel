@@ -24,6 +24,7 @@ import com.lucaspuorto.marvel.presentation.viewdata.ComicsListViewData
 import com.lucaspuorto.marvel.presentation.viewmodel.HomeViewModel
 import com.lucaspuorto.marvel.ui.adapter.ComicsAdapter
 import com.lucaspuorto.marvel.utils.changeVisibility
+import com.lucaspuorto.marvel.utils.hideKeyboard
 
 class HomeActivity : AppCompatActivity() {
 
@@ -64,6 +65,7 @@ class HomeActivity : AppCompatActivity() {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     val inputText = tilSearchContainer.editText?.text.toString()
                     viewModel.fetchCharacter(inputText)
+                    hideKeyboard()
                 }
             }
             false
@@ -136,7 +138,9 @@ class HomeActivity : AppCompatActivity() {
         loadingComics.changeVisibility(false)
         comicsAdapter.run {
             addComics(data)
+            notifyDataSetChanged()
         }
+        comicsList.scrollToPosition(0)
     }
 
     private fun onGetComicsListError() {
