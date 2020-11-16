@@ -8,4 +8,5 @@
 
     //ERROR
     <string name="error_comics_loading_error">ERROR ON LOADING COMICS LIST</string>
+    <string name="error_network">sem acesso a internet</string>
 </resources>

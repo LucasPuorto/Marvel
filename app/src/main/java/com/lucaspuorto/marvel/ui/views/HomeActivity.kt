@@ -1,6 +1,7 @@
 package com.lucaspuorto.marvel.ui.views
 
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -23,8 +24,11 @@ import com.lucaspuorto.marvel.presentation.viewdata.CharacterViewData
 import com.lucaspuorto.marvel.presentation.viewdata.ComicsListViewData
 import com.lucaspuorto.marvel.presentation.viewmodel.HomeViewModel
 import com.lucaspuorto.marvel.ui.adapter.ComicsAdapter
+import com.lucaspuorto.marvel.utils.INITIAL_POSITION
 import com.lucaspuorto.marvel.utils.changeVisibility
+import com.lucaspuorto.marvel.utils.checkConnection
 import com.lucaspuorto.marvel.utils.hideKeyboard
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -42,6 +46,7 @@ class HomeActivity : AppCompatActivity() {
     private val characterImage: ImageView by lazy { findViewById(R.id.ivCharacterImage) }
     private val characterDescription: TextView by lazy { findViewById(R.id.tvCharacterDescription) }
     private val comicsList: RecyclerView by lazy { findViewById(R.id.rvComics) }
+    private val snackBarView: View by lazy { findViewById(R.id.snack_bar) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +67,7 @@ class HomeActivity : AppCompatActivity() {
     private fun setupCharacterSearch() {
         tieSearch.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
-                EditorInfo.IME_ACTION_SEARCH -> {
+                EditorInfo.IME_ACTION_SEARCH -> checkConnection(this@HomeActivity, snackBarView, resources) {
                     val inputText = tilSearchContainer.editText?.text.toString()
                     viewModel.fetchCharacter(inputText)
                     hideKeyboard()
@@ -140,7 +145,7 @@ class HomeActivity : AppCompatActivity() {
             addComics(data)
             notifyDataSetChanged()
         }
-        comicsList.scrollToPosition(0)
+        comicsList.scrollToPosition(INITIAL_POSITION)
     }
 
     private fun onGetComicsListError() {

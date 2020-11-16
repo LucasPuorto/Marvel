@@ -10,3 +10,5 @@ const val SIGNUM_1 = 1
 const val RADIX = 16
 const val HASH_TEXT_LENGTH = 32
 const val CHARACTER_LIST_FIRST_POSITION = 0
+const val INITIAL_POSITION = 0
+const val NONE = 0

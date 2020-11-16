@@ -7,6 +7,7 @@
     <dimen name="margin_32">32dp</dimen>
 
     //PADDING
+    <dimen name="snack_bar_icon_padding">16dp</dimen>
     <dimen name="padding_24">24dp</dimen>
 
     //FONT SIZE
