@@ -26,6 +26,8 @@
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginBottom="@dimen/margin_16"
         android:lineSpacingExtra="@dimen/line_spacing_extra_default"
+        android:maxLines="3"
+        android:ellipsize="end"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/ivComicImage"
