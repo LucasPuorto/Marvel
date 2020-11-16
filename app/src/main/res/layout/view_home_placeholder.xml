@@ -2,97 +2,69 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/blue_grey_800">
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelinePlaceholderHomeStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/guideline_default_start" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelinePlaceholderHomeEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/guideline_default_end" />
 
     <View
         android:id="@+id/placeholderCharacterName"
-        android:layout_width="120dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/placeholder_text_view_medium_width"
+        android:layout_height="@dimen/placeholder_text_view_small_height"
         android:layout_marginTop="@dimen/margin_16"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelinePlaceholderHomeEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelinePlaceholderHomeStart"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/placeholderCharacterImage"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/home_character_image_width"
+        android:layout_height="@dimen/home_character_image_height"
         android:layout_marginTop="@dimen/margin_16"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelinePlaceholderHomeEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelinePlaceholderHomeStart"
         app:layout_constraintTop_toBottomOf="@id/placeholderCharacterName" />
 
     <View
         android:id="@+id/placeholderCharacterDescription"
-        android:layout_width="0dp"
-        android:layout_height="128dp"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/placeholder_text_view_large_height"
         android:layout_marginTop="@dimen/margin_16"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelinePlaceholderHomeEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelinePlaceholderHomeStart"
         app:layout_constraintTop_toBottomOf="@id/placeholderCharacterImage" />
 
     <View
         android:id="@+id/placeholderComicsLabel"
-        android:layout_width="120dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/placeholder_text_view_medium_width"
+        android:layout_height="@dimen/placeholder_text_view_small_height"
         android:layout_marginTop="@dimen/margin_24"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelinePlaceholderHomeEnd"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/guidelinePlaceholderHomeStart"
         app:layout_constraintTop_toBottomOf="@id/placeholderCharacterDescription" />
 
-    <View
-        android:id="@+id/placeholderComicsItemOne"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="@dimen/margin_8"
-        android:layout_marginBottom="@dimen/margin_24"
-        android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <include
+        layout="@layout/view_home_comics_list_placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/placeholderComicsLabel"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <View
-        android:id="@+id/placeholderComicsItemTwo"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="@dimen/margin_8"
-        android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
-        app:layout_constraintStart_toEndOf="@id/placeholderComicsItemOne"
-        app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
-
-    <View
-        android:id="@+id/placeholderComicsItemThree"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="@dimen/margin_8"
-        android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
-        app:layout_constraintStart_toEndOf="@id/placeholderComicsItemTwo"
-        app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
-
-    <View
-        android:id="@+id/placeholderComicsItemFour"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="@dimen/margin_8"
-        android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
-        app:layout_constraintStart_toEndOf="@id/placeholderComicsItemThree"
-        app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
-
-    <View
-        android:id="@+id/placeholderComicsItemFive"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="@dimen/margin_8"
-        android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
-        app:layout_constraintStart_toEndOf="@id/placeholderComicsItemFour"
-        app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
+        app:layout_constraintTop_toBottomOf="@id/placeholderComicsLabel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

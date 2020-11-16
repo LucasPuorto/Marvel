@@ -2,57 +2,89 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/blue_grey_800">
+    android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/placeholderComicsItemOne"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
+        android:id="@+id/placeholderComicsImageOne"
+        android:layout_width="@dimen/comic_image_width"
+        android:layout_height="@dimen/comic_image_height"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginBottom="@dimen/margin_24"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/placeholderComicsItemTwo"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="@dimen/margin_8"
+        android:id="@+id/placeholderComicsTextOne"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/placeholder_text_view_medium_height"
+        android:layout_marginTop="@dimen/margin_8"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
-        app:layout_constraintStart_toEndOf="@id/placeholderComicsItemOne"
-        app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/placeholderComicsImageOne"
+        app:layout_constraintStart_toStartOf="@id/placeholderComicsImageOne"
+        app:layout_constraintTop_toBottomOf="@id/placeholderComicsImageOne" />
 
     <View
-        android:id="@+id/placeholderComicsItemThree"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
+        android:id="@+id/placeholderComicsImageTwo"
+        android:layout_width="@dimen/comic_image_width"
+        android:layout_height="@dimen/comic_image_height"
         android:layout_marginStart="@dimen/margin_8"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
-        app:layout_constraintStart_toEndOf="@id/placeholderComicsItemTwo"
-        app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
+        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsImageOne"
+        app:layout_constraintStart_toEndOf="@id/placeholderComicsImageOne"
+        app:layout_constraintTop_toTopOf="@id/placeholderComicsImageOne" />
 
     <View
-        android:id="@+id/placeholderComicsItemFour"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="@dimen/margin_8"
+        android:id="@+id/placeholderComicsTextTwo"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/placeholder_text_view_medium_height"
+        android:layout_marginTop="@dimen/margin_8"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
-        app:layout_constraintStart_toEndOf="@id/placeholderComicsItemThree"
-        app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/placeholderComicsImageTwo"
+        app:layout_constraintStart_toStartOf="@id/placeholderComicsImageTwo"
+        app:layout_constraintTop_toBottomOf="@id/placeholderComicsImageTwo" />
 
     <View
-        android:id="@+id/placeholderComicsItemFive"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
+        android:id="@+id/placeholderComicsImageThree"
+        android:layout_width="@dimen/comic_image_width"
+        android:layout_height="@dimen/comic_image_height"
         android:layout_marginStart="@dimen/margin_8"
         android:background="@drawable/background_placeholder_default"
-        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsItemOne"
-        app:layout_constraintStart_toEndOf="@id/placeholderComicsItemFour"
-        app:layout_constraintTop_toTopOf="@id/placeholderComicsItemOne" />
+        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsImageOne"
+        app:layout_constraintStart_toEndOf="@id/placeholderComicsImageTwo"
+        app:layout_constraintTop_toTopOf="@id/placeholderComicsImageOne" />
+
+    <View
+        android:id="@+id/placeholderComicsTextThree"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/placeholder_text_view_medium_height"
+        android:layout_marginTop="@dimen/margin_8"
+        android:background="@drawable/background_placeholder_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/placeholderComicsImageThree"
+        app:layout_constraintStart_toStartOf="@id/placeholderComicsImageThree"
+        app:layout_constraintTop_toBottomOf="@id/placeholderComicsImageThree" />
+
+    <View
+        android:id="@+id/placeholderComicsImageFour"
+        android:layout_width="@dimen/comic_image_width"
+        android:layout_height="@dimen/comic_image_height"
+        android:layout_marginStart="@dimen/margin_8"
+        android:background="@drawable/background_placeholder_default"
+        app:layout_constraintBottom_toBottomOf="@id/placeholderComicsImageOne"
+        app:layout_constraintStart_toEndOf="@id/placeholderComicsImageThree"
+        app:layout_constraintTop_toTopOf="@id/placeholderComicsImageOne" />
+
+    <View
+        android:id="@+id/placeholderComicsTextFour"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/placeholder_text_view_medium_height"
+        android:layout_marginTop="@dimen/margin_8"
+        android:background="@drawable/background_placeholder_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/placeholderComicsImageFour"
+        app:layout_constraintStart_toStartOf="@id/placeholderComicsImageFour"
+        app:layout_constraintTop_toBottomOf="@id/placeholderComicsImageFour" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,14 +13,14 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineStart"
+            android:id="@+id/guidelineHomeStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="@dimen/guideline_default_start" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineEnd"
+            android:id="@+id/guidelineHomeEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -44,8 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:hint="@string/search_character"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
             app:layout_constraintTop_toBottomOf="@id/ivMarvelLogo">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -71,8 +71,8 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_16"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
             app:layout_constraintTop_toBottomOf="@id/tilSearchContainer" />
 
         <TextView
@@ -83,8 +83,8 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_24"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
             app:layout_constraintTop_toBottomOf="@id/tilSearchContainer"
             tools:text="Spider-Man" />
 
@@ -94,8 +94,8 @@
             android:layout_height="@dimen/home_character_image_height"
             android:layout_marginTop="@dimen/margin_16"
             android:importantForAccessibility="no"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
             app:layout_constraintTop_toBottomOf="@id/tvCharacterName" />
 
         <TextView
@@ -105,8 +105,8 @@
             android:layout_marginTop="@dimen/margin_16"
             android:lineSpacingExtra="@dimen/line_spacing_extra_default"
             android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
             app:layout_constraintTop_toBottomOf="@id/ivCharacterImage"
             tools:text="Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people." />
 
@@ -118,8 +118,8 @@
             android:text="@string/home_comics_label"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_18"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
             app:layout_constraintTop_toBottomOf="@id/tvCharacterDescription" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -151,18 +151,19 @@
             android:layout_marginBottom="@dimen/margin_24"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
             app:layout_constraintTop_toBottomOf="@id/tvComicsLabel" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerLoadingActivity"
             android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_24"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilSearchContainer"
             app:layout_constraintVertical_bias="0.0">
 
@@ -173,10 +174,11 @@
             android:id="@+id/shimmerLoadingComics"
             android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_24"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvComicsLabel"
             app:layout_constraintVertical_bias="0.0">
 

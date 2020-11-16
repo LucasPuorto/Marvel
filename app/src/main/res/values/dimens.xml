@@ -21,11 +21,15 @@
     <dimen name="match_constraints">0dp</dimen>
     <dimen name="error_logo_width">60dp</dimen>
     <dimen name="comic_image_width">110dp</dimen>
+    <dimen name="placeholder_text_view_medium_width">120dp</dimen>
     <dimen name="home_character_image_width">250dp</dimen>
 
     //HEIGHT
+    <dimen name="placeholder_text_view_small_height">24dp</dimen>
+    <dimen name="placeholder_text_view_medium_height">48dp</dimen>
     <dimen name="home_logo_height">56dp</dimen>
     <dimen name="error_logo_height">60dp</dimen>
+    <dimen name="placeholder_text_view_large_height">124dp</dimen>
     <dimen name="comic_image_height">170dp</dimen>
     <dimen name="home_character_image_height">250dp</dimen>
 
