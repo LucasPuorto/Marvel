@@ -35,6 +35,7 @@ class ComicsAdapter :
 
             Glide.with(itemView)
                 .load(comic.comicImage)
+                .placeholder(R.drawable.ic_default_placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(itemView.findViewById(R.id.ivComicImage))
         }
