@@ -6,7 +6,7 @@ import java.io.Serializable
 data class MarvelCharacterResponse(
     @SerializedName("attributionHTML") val attributionHTML: String,
     @SerializedName("attributionText") val attributionText: String,
-    @SerializedName("code") val code: Int,
+    @SerializedName("code") val code: String,
     @SerializedName("copyright") val copyright: String,
     @SerializedName("data") val data: Data,
     @SerializedName("etag") val eTag: String,
