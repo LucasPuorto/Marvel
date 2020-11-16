@@ -156,7 +156,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvComicsLabel" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerLoading"
+            android:id="@+id/shimmerLoadingActivity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
@@ -167,6 +167,20 @@
             app:layout_constraintVertical_bias="0.0">
 
             <include layout="@layout/view_home_placeholder" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerLoadingComics"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/tvComicsLabel"
+            app:layout_constraintVertical_bias="0.0">
+
+            <include layout="@layout/view_home_comics_list_placeholder" />
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.constraintlayout.widget.Group
