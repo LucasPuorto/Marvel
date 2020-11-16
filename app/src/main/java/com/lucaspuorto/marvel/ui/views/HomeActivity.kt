@@ -30,7 +30,8 @@ class HomeActivity : AppCompatActivity() {
     private val viewModel: HomeViewModel by viewModels()
     private val comicsAdapter = ComicsAdapter()
 
-    private val loading: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoading) }
+    private val loadingActivity: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoadingActivity) }
+    private val loadingComics: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoadingComics) }
     private val group: Group by lazy { findViewById(R.id.group) }
     private val comicsError: LinearLayout by lazy { findViewById(R.id.comicsErrorView) }
     private val characterError: TextView by lazy { findViewById(R.id.tvCharacterError) }
@@ -85,15 +86,17 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onGetCharacterLoading() {
-        loading.changeVisibility(true)
+        loadingActivity.changeVisibility(true)
         group.changeVisibility(false)
         characterError.changeVisibility(false)
+        loadingComics.changeVisibility(false)
     }
 
     private fun onGetCharacterSuccess(data: CharacterViewData) {
-        loading.changeVisibility(false)
+        loadingActivity.changeVisibility(false)
         group.changeVisibility(true)
         characterError.changeVisibility(false)
+        loadingComics.changeVisibility(false)
 
         characterName.text = data.characterName
         Glide.with(this@HomeActivity)
@@ -105,9 +108,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onGetCharacterError() {
-        loading.changeVisibility(false)
+        loadingActivity.changeVisibility(false)
         group.changeVisibility(false)
         characterError.changeVisibility(true)
+        loadingComics.changeVisibility(false)
     }
 
     private fun onGetComicsListResponse(state: StateResponse<List<ComicsListViewData>>) {
@@ -123,11 +127,13 @@ class HomeActivity : AppCompatActivity() {
     private fun onGetComicsListLoading() {
         comicsError.changeVisibility(false)
         comicsList.changeVisibility(false)
+        loadingComics.changeVisibility(true)
     }
 
     private fun onGetComicsListSuccess(data: List<ComicsListViewData>) {
         comicsError.changeVisibility(false)
         comicsList.changeVisibility(true)
+        loadingComics.changeVisibility(false)
         comicsAdapter.run {
             addComics(data)
         }
@@ -136,5 +142,6 @@ class HomeActivity : AppCompatActivity() {
     private fun onGetComicsListError() {
         comicsError.changeVisibility(true)
         comicsList.changeVisibility(false)
+        loadingComics.changeVisibility(false)
     }
 }
