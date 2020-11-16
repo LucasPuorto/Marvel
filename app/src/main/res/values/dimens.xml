@@ -20,13 +20,13 @@
     //WIDTH
     <dimen name="match_constraints">0dp</dimen>
     <dimen name="error_logo_width">60dp</dimen>
-    <dimen name="comic_image_width">80dp</dimen>
+    <dimen name="comic_image_width">110dp</dimen>
     <dimen name="home_character_image_width">250dp</dimen>
 
     //HEIGHT
     <dimen name="home_logo_height">56dp</dimen>
     <dimen name="error_logo_height">60dp</dimen>
-    <dimen name="comic_image_height">80dp</dimen>
+    <dimen name="comic_image_height">170dp</dimen>
     <dimen name="home_character_image_height">250dp</dimen>
 
     //CORNER RADIUS
