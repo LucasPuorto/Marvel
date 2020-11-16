@@ -1,7 +1,6 @@
 package com.lucaspuorto.marvel.ui.views
 
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -9,7 +8,6 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -22,15 +20,20 @@ import com.lucaspuorto.marvel.presentation.StateLoading
 import com.lucaspuorto.marvel.presentation.StateResponse
 import com.lucaspuorto.marvel.presentation.StateSuccess
 import com.lucaspuorto.marvel.presentation.viewdata.CharacterViewData
+import com.lucaspuorto.marvel.presentation.viewdata.ComicsListViewData
 import com.lucaspuorto.marvel.presentation.viewmodel.HomeViewModel
+import com.lucaspuorto.marvel.ui.adapter.ComicsAdapter
+import com.lucaspuorto.marvel.utils.changeVisibility
 
 class HomeActivity : AppCompatActivity() {
 
     private val viewModel: HomeViewModel by viewModels()
+    private val comicsAdapter = ComicsAdapter()
 
     private val loading: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoading) }
     private val group: Group by lazy { findViewById(R.id.group) }
-    private val comicsErrorView: LinearLayout by lazy { findViewById(R.id.comicsErrorView) }
+    private val comicsError: LinearLayout by lazy { findViewById(R.id.comicsErrorView) }
+    private val characterError: TextView by lazy { findViewById(R.id.tvCharacterError) }
     private val tilSearchContainer: TextInputLayout by lazy { findViewById(R.id.tilSearchContainer) }
     private val tieSearch: TextInputEditText by lazy { findViewById(R.id.tieSearch) }
     private val characterName: TextView by lazy { findViewById(R.id.tvCharacterName) }
@@ -46,7 +49,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        setupRecyclerView()
         setupCharacterSearch()
+    }
+
+    private fun setupRecyclerView() {
+        comicsList.adapter = comicsAdapter
     }
 
     private fun setupCharacterSearch() {
@@ -62,7 +70,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupObserves() {
-        viewModel.characterLiveData.observe(this@HomeActivity, Observer { state -> onGetCharacterResponse(state) })
+        viewModel.characterLiveData.observe(this@HomeActivity, { state -> onGetCharacterResponse(state) })
+        viewModel.comicsListLiveData.observe(this@HomeActivity, { state -> onGetComicsListResponse(state) })
     }
 
     private fun onGetCharacterResponse(state: StateResponse<CharacterViewData>) {
@@ -76,15 +85,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onGetCharacterLoading() {
-        loading.visibility = View.VISIBLE
-        group.visibility = View.GONE
-        comicsErrorView.visibility = View.GONE
+        loading.changeVisibility(true)
+        group.changeVisibility(false)
+        characterError.changeVisibility(false)
     }
 
     private fun onGetCharacterSuccess(data: CharacterViewData) {
-        loading.visibility = View.GONE
-        group.visibility = View.VISIBLE
-        comicsErrorView.visibility = View.GONE
+        loading.changeVisibility(false)
+        group.changeVisibility(true)
+        characterError.changeVisibility(false)
 
         characterName.text = data.characterName
         Glide.with(this@HomeActivity)
@@ -92,11 +101,40 @@ class HomeActivity : AppCompatActivity() {
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(characterImage)
         characterDescription.text = data.characterDescription
+        viewModel.fetchComics(data.characterId)
     }
 
     private fun onGetCharacterError() {
-        loading.visibility = View.GONE
-        group.visibility = View.GONE
-        comicsErrorView.visibility = View.VISIBLE
+        loading.changeVisibility(false)
+        group.changeVisibility(false)
+        characterError.changeVisibility(true)
+    }
+
+    private fun onGetComicsListResponse(state: StateResponse<List<ComicsListViewData>>) {
+        state.let {
+            when (state) {
+                is StateLoading -> onGetComicsListLoading()
+                is StateSuccess -> onGetComicsListSuccess(state.data)
+                is StateError -> onGetComicsListError()
+            }
+        }
+    }
+
+    private fun onGetComicsListLoading() {
+        comicsError.changeVisibility(false)
+        comicsList.changeVisibility(false)
+    }
+
+    private fun onGetComicsListSuccess(data: List<ComicsListViewData>) {
+        comicsError.changeVisibility(false)
+        comicsList.changeVisibility(true)
+        comicsAdapter.run {
+            addComics(data)
+        }
+    }
+
+    private fun onGetComicsListError() {
+        comicsError.changeVisibility(true)
+        comicsList.changeVisibility(false)
     }
 }
