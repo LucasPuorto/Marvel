@@ -61,7 +61,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tvError"
+            android:id="@+id/tvCharacterError"
             android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_32"
