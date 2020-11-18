@@ -23,16 +23,16 @@ import com.lucaspuorto.marvel.presentation.StateSuccess
 import com.lucaspuorto.marvel.presentation.viewdata.CharacterViewData
 import com.lucaspuorto.marvel.presentation.viewdata.ComicsListViewData
 import com.lucaspuorto.marvel.presentation.viewmodel.HomeViewModel
+import com.lucaspuorto.marvel.presentation.viewmodel.ViewModelFactory
 import com.lucaspuorto.marvel.ui.adapter.ComicsAdapter
 import com.lucaspuorto.marvel.utils.INITIAL_POSITION
 import com.lucaspuorto.marvel.utils.changeVisibility
 import com.lucaspuorto.marvel.utils.checkConnection
 import com.lucaspuorto.marvel.utils.hideKeyboard
 
-
 class HomeActivity : AppCompatActivity() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
     private val comicsAdapter = ComicsAdapter()
 
     private val loadingActivity: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoadingActivity) }
