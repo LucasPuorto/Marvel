@@ -17,9 +17,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeViewModel : ViewModel() {
-
-    private val repository: MarvelRepository = MarvelRepository()
+class HomeViewModel(
+    private val repository: MarvelRepository
+) : ViewModel() {
 
     private val _characterLiveData: MutableLiveData<StateResponse<CharacterViewData>> = MutableLiveData()
     val characterLiveData: LiveData<StateResponse<CharacterViewData>> get() = _characterLiveData
