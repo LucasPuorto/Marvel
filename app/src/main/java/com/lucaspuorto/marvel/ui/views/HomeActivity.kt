@@ -96,17 +96,14 @@ class HomeActivity : AppCompatActivity() {
 
     private fun onGetCharacterSuccess(data: CharacterViewData) {
         setupCharacterVisibility(characterInformationVisibility = true)
-
-        setupCharacterName(data)
-        setupCharacterImage(data)
-        setupCharacterDescription(data)
-        checkConnection(this@HomeActivity, snackBarView, resources) {
-            whenHaveConnectionCallComicsList(data)
-        }
+        setupCharacterInformation(data)
+        checkConnection(this@HomeActivity, snackBarView, resources) { whenHaveConnectionCallComicsList(data) }
     }
 
-    private fun setupCharacterName(data: CharacterViewData) {
+    private fun setupCharacterInformation(data: CharacterViewData) {
         characterName.text = data.characterName
+        setupCharacterImage(data)
+        characterDescription.text = data.characterDescription
     }
 
     private fun setupCharacterImage(data: CharacterViewData) {
@@ -114,10 +111,6 @@ class HomeActivity : AppCompatActivity() {
             .load(data.characterImageUrl)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(characterImage)
-    }
-
-    private fun setupCharacterDescription(data: CharacterViewData) {
-        characterDescription.text = data.characterDescription
     }
 
     private fun whenHaveConnectionCallComicsList(data: CharacterViewData) {
