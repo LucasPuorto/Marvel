@@ -25,7 +25,6 @@ import com.lucaspuorto.marvel.presentation.viewdata.ComicsListViewData
 import com.lucaspuorto.marvel.presentation.viewmodel.HomeViewModel
 import com.lucaspuorto.marvel.presentation.viewmodel.ViewModelFactory
 import com.lucaspuorto.marvel.ui.adapter.ComicsAdapter
-import com.lucaspuorto.marvel.utils.INITIAL_POSITION
 import com.lucaspuorto.marvel.utils.changeVisibility
 import com.lucaspuorto.marvel.utils.checkConnection
 import com.lucaspuorto.marvel.utils.hideKeyboard
@@ -51,7 +50,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        setupObserves()
         initView()
     }
 
@@ -69,17 +67,13 @@ class HomeActivity : AppCompatActivity() {
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> checkConnection(this@HomeActivity, snackBarView, resources) {
                     val inputText = tilSearchContainer.editText?.text.toString()
-                    viewModel.fetchCharacter(inputText)
+                    viewModel.getCharacter(inputText)
+                    viewModel.getCharacter(inputText).observe(this@HomeActivity, { state -> onGetCharacterResponse(state) })
                     hideKeyboard()
                 }
             }
             false
         }
-    }
-
-    private fun setupObserves() {
-        viewModel.characterLiveData.observe(this@HomeActivity, { state -> onGetCharacterResponse(state) })
-        viewModel.comicsListLiveData.observe(this@HomeActivity, { state -> onGetComicsListResponse(state) })
     }
 
     private fun onGetCharacterResponse(state: StateResponse<CharacterViewData>) {
@@ -111,7 +105,9 @@ class HomeActivity : AppCompatActivity() {
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(characterImage)
         characterDescription.text = data.characterDescription
-        checkConnection(this@HomeActivity, snackBarView, resources) { viewModel.fetchComics(data.characterId) }
+        checkConnection(this@HomeActivity, snackBarView, resources) {
+            viewModel.getComics(data.characterId).observe(this@HomeActivity, { state -> onGetComicsListResponse(state) })
+        }
     }
 
     private fun onGetCharacterError() {
@@ -145,7 +141,7 @@ class HomeActivity : AppCompatActivity() {
             addComics(data)
             notifyDataSetChanged()
         }
-        comicsList.scrollToPosition(INITIAL_POSITION)
+        comicsList.smoothScrollToPosition(0)
     }
 
     private fun onGetComicsListError() {
