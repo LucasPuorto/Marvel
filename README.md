@@ -4,6 +4,8 @@ Este projeto tem como propósito buscar todos os personagens do universo Marvel.
 Deve ser digitado o nome do personagem que deseja consultar, assim que confirmado o nome do personagem, haverá a busca.
 Tendo como retorno e exibição o nome, imagem, descrição e lista de quadrinhos que o personagem possui.
 
+Caso deseje, poderá fazer o [Download do APK](https://drive.google.com/file/d/1vRNDP0HrhfvTWg1qaAVnv4MZfm0Ypo2l/view?usp=sharing) aqui
+
 O vídeo mostra algumas das experiências que o usuário poderá ter no app.
 
 [![Marvel App Video](https://imgur.com/CeduCvJ.png)](https://youtu.be/TZzp9GtSCEc)
@@ -26,5 +28,3 @@ Abaixo escrevi alguns cenários de caso de uso da aplicação.
 Melhorias/Features futuras:
   - Expandir a imagens dos quadrinhos e exibir a descrição de cada um 
   - Lista de sugestões para facilitar na busca de personagens
-
-Caso deseje, poderá fazer o [Download do APK](https://drive.google.com/file/d/1vRNDP0HrhfvTWg1qaAVnv4MZfm0Ypo2l/view?usp=sharing) aqui
