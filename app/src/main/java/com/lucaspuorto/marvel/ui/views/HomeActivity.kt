@@ -67,13 +67,16 @@ class HomeActivity : AppCompatActivity() {
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> checkConnection(this@HomeActivity, snackBarView, resources) {
                     val inputText = tilSearchContainer.editText?.text.toString()
-                    viewModel.getCharacter(inputText)
-                    viewModel.getCharacter(inputText).observe(this@HomeActivity, { state -> onGetCharacterResponse(state) })
+                    whenHaveConnectionCallCharacter(inputText)
                     hideKeyboard()
                 }
             }
             false
         }
+    }
+
+    private fun whenHaveConnectionCallCharacter(inputText: String) {
+        viewModel.getCharacter(inputText).observe(this@HomeActivity, { state -> onGetCharacterResponse(state) })
     }
 
     private fun onGetCharacterResponse(state: StateResponse<CharacterViewData>) {
@@ -99,15 +102,31 @@ class HomeActivity : AppCompatActivity() {
         characterError.changeVisibility(false)
         loadingComics.changeVisibility(false)
 
+        setupCharacterName(data)
+        setupCharacterImage(data)
+        setupCharacterDescription(data)
+        checkConnection(this@HomeActivity, snackBarView, resources) {
+            whenHaveConnectionCallComicsList(data)
+        }
+    }
+
+    private fun setupCharacterName(data: CharacterViewData) {
         characterName.text = data.characterName
+    }
+
+    private fun setupCharacterImage(data: CharacterViewData) {
         Glide.with(this@HomeActivity)
             .load(data.characterImageUrl)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(characterImage)
+    }
+
+    private fun setupCharacterDescription(data: CharacterViewData) {
         characterDescription.text = data.characterDescription
-        checkConnection(this@HomeActivity, snackBarView, resources) {
-            viewModel.getComics(data.characterId).observe(this@HomeActivity, { state -> onGetComicsListResponse(state) })
-        }
+    }
+
+    private fun whenHaveConnectionCallComicsList(data: CharacterViewData) {
+        viewModel.getComics(data.characterId).observe(this@HomeActivity, { state -> onGetComicsListResponse(state) })
     }
 
     private fun onGetCharacterError() {
