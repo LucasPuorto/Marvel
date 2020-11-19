@@ -83,9 +83,9 @@ class HomeActivity : AppCompatActivity() {
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     hideKeyboard()
+                    character = tilSearchContainer.editText?.text.toString()
+                    swipeRefresh.isEnabled = character.isNotEmpty()
                     checkConnection(this@HomeActivity, snackBarView, resources) {
-                        character = tilSearchContainer.editText?.text.toString()
-                        swipeRefresh.isEnabled = character.isNotEmpty()
                         whenHaveConnectionCallCharacter(character)
                     }
                 }
@@ -186,8 +186,4 @@ class HomeActivity : AppCompatActivity() {
         comicsList.changeVisibility(comicsListVisibility)
         comicsError.changeVisibility(comicsErrorVisibility)
     }
-
-//    override fun onRefresh() {
-//        Toast.makeText(this@HomeActivity, "refresh", Toast.LENGTH_SHORT).show()
-//    }
 }
