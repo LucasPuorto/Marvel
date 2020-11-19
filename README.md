@@ -13,6 +13,7 @@ O vídeo mostra algumas das experiências que o usuário poderá ter no app.
 Os testes unitários são de suma importância para a qualidade do código e do produto final, mas também devemos prezar pelos testes manuais, simulando casos de uso do usuário final. 
 Abaixo escrevi alguns cenários de caso de uso da aplicação.
 
+### Cenários de testes
 
 | Cenário | Dado que | Quando | Então |
 | --- | --- | --- | --- |
@@ -23,8 +24,18 @@ Abaixo escrevi alguns cenários de caso de uso da aplicação.
 | Pesquisa com nome diferente da base de dados | estou na home do aplicativo | pesquiso por Spider Man | vejo uma modal de erro |
 | Shimmer | estou no carregamento de uma pesquisa | estou aguardando carregar as informações | vejo shimmer no lugar do herói e imagens de quadrinhos |
 | Placeholder | estou aguardando a lista de quadrinhos carregar | encontro uma imagem do quadrinho carregando | vejo um placeholder no lugar das quadrinhos |
+| Pull to refresh | realizei uma pesquisa que resultou em erro de conexão  | puxo a tela para baixo | a tela é atualizada |
 
+### Codigo:  
+  - IDE - Android Studio 4.1.1
+  - Gradle 4.0.2
+  - Kotlin: 1.4.10
+  - MVVM Architecture
+  - ViewModel
+  - Coroutines
+  - Testes unitários com pattern AAA
 
-Melhorias/Features futuras:
+### Melhorias/Features futuras:
   - Expandir a imagens dos quadrinhos e exibir a descrição de cada um 
   - Lista de sugestões para facilitar na busca de personagens
+  
