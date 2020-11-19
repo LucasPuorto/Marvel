@@ -25,6 +25,7 @@ import com.lucaspuorto.marvel.presentation.viewdata.ComicsListViewData
 import com.lucaspuorto.marvel.presentation.viewmodel.HomeViewModel
 import com.lucaspuorto.marvel.presentation.viewmodel.ViewModelFactory
 import com.lucaspuorto.marvel.ui.adapter.ComicsAdapter
+import com.lucaspuorto.marvel.utils.INITIAL_POSITION
 import com.lucaspuorto.marvel.utils.changeVisibility
 import com.lucaspuorto.marvel.utils.checkConnection
 import com.lucaspuorto.marvel.utils.hideKeyboard
@@ -36,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val loadingActivity: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoadingActivity) }
     private val loadingComics: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoadingComics) }
-    private val group: Group by lazy { findViewById(R.id.group) }
+    private val characterInformation: Group by lazy { findViewById(R.id.characterInformation) }
     private val comicsError: LinearLayout by lazy { findViewById(R.id.comicsErrorView) }
     private val characterError: TextView by lazy { findViewById(R.id.tvCharacterError) }
     private val tilSearchContainer: TextInputLayout by lazy { findViewById(R.id.tilSearchContainer) }
@@ -90,17 +91,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onGetCharacterLoading() {
-        loadingActivity.changeVisibility(true)
-        group.changeVisibility(false)
-        characterError.changeVisibility(false)
-        loadingComics.changeVisibility(false)
+        setupCharacterVisibility(loadingActivityVisibility = true)
     }
 
     private fun onGetCharacterSuccess(data: CharacterViewData) {
-        loadingActivity.changeVisibility(false)
-        group.changeVisibility(true)
-        characterError.changeVisibility(false)
-        loadingComics.changeVisibility(false)
+        setupCharacterVisibility(characterInformationVisibility = true)
 
         setupCharacterName(data)
         setupCharacterImage(data)
@@ -130,10 +125,17 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onGetCharacterError() {
-        loadingActivity.changeVisibility(false)
-        group.changeVisibility(false)
-        characterError.changeVisibility(true)
-        loadingComics.changeVisibility(false)
+        setupCharacterVisibility(characterErrorVisibility = true)
+    }
+
+    private fun setupCharacterVisibility(
+        loadingActivityVisibility: Boolean = false,
+        characterInformationVisibility: Boolean = false,
+        characterErrorVisibility: Boolean = false
+    ) {
+        loadingActivity.changeVisibility(loadingActivityVisibility)
+        characterInformation.changeVisibility(characterInformationVisibility)
+        characterError.changeVisibility(characterErrorVisibility)
     }
 
     private fun onGetComicsListResponse(state: StateResponse<List<ComicsListViewData>>) {
@@ -147,25 +149,29 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onGetComicsListLoading() {
-        comicsError.changeVisibility(false)
-        comicsList.changeVisibility(false)
-        loadingComics.changeVisibility(true)
+        setupComicsVisibility(loadingComicsVisibility = true)
     }
 
     private fun onGetComicsListSuccess(data: List<ComicsListViewData>) {
-        comicsError.changeVisibility(false)
-        comicsList.changeVisibility(true)
-        loadingComics.changeVisibility(false)
+        setupComicsVisibility(comicsListVisibility = true)
         comicsAdapter.run {
             addComics(data)
             notifyDataSetChanged()
         }
-        comicsList.smoothScrollToPosition(0)
+        comicsList.smoothScrollToPosition(INITIAL_POSITION)
     }
 
     private fun onGetComicsListError() {
-        comicsError.changeVisibility(true)
-        comicsList.changeVisibility(false)
-        loadingComics.changeVisibility(false)
+        setupComicsVisibility(comicsErrorVisibility = true)
+    }
+
+    private fun setupComicsVisibility(
+        loadingComicsVisibility: Boolean = false,
+        comicsListVisibility: Boolean = false,
+        comicsErrorVisibility: Boolean = false
+    ) {
+        loadingComics.changeVisibility(loadingComicsVisibility)
+        comicsList.changeVisibility(comicsListVisibility)
+        comicsError.changeVisibility(comicsErrorVisibility)
     }
 }
