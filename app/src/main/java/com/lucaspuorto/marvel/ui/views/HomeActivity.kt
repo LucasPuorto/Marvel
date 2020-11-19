@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -35,6 +36,7 @@ class HomeActivity : AppCompatActivity() {
     private val viewModel: HomeViewModel by viewModels { ViewModelFactory() }
     private val comicsAdapter = ComicsAdapter()
 
+    private val swipeRefresh: SwipeRefreshLayout by lazy { findViewById(R.id.swipeRefresh) }
     private val loadingActivity: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoadingActivity) }
     private val loadingComics: ShimmerFrameLayout by lazy { findViewById(R.id.shimmerLoadingComics) }
     private val characterInformation: Group by lazy { findViewById(R.id.characterInformation) }
@@ -48,6 +50,8 @@ class HomeActivity : AppCompatActivity() {
     private val comicsList: RecyclerView by lazy { findViewById(R.id.rvComics) }
     private val snackBarView: View by lazy { findViewById(R.id.snack_bar) }
 
+    private var character: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -56,6 +60,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initView() {
         setupRecyclerView()
+        setupSwipeRefresh()
         setupCharacterSearch()
     }
 
@@ -63,13 +68,26 @@ class HomeActivity : AppCompatActivity() {
         comicsList.adapter = comicsAdapter
     }
 
+    private fun setupSwipeRefresh() {
+        swipeRefresh.apply {
+            isEnabled = character.isNotEmpty()
+            setColorSchemeResources(R.color.red_900)
+            setOnRefreshListener {
+                checkConnection(this@HomeActivity, snackBarView, resources) { whenHaveConnectionCallCharacter(character) }
+            }
+        }
+    }
+
     private fun setupCharacterSearch() {
         tieSearch.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
-                EditorInfo.IME_ACTION_SEARCH -> checkConnection(this@HomeActivity, snackBarView, resources) {
-                    val inputText = tilSearchContainer.editText?.text.toString()
-                    whenHaveConnectionCallCharacter(inputText)
+                EditorInfo.IME_ACTION_SEARCH -> {
                     hideKeyboard()
+                    checkConnection(this@HomeActivity, snackBarView, resources) {
+                        character = tilSearchContainer.editText?.text.toString()
+                        swipeRefresh.isEnabled = character.isNotEmpty()
+                        whenHaveConnectionCallCharacter(character)
+                    }
                 }
             }
             false
@@ -91,6 +109,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onGetCharacterLoading() {
+        swipeRefresh.isRefreshing = false
         setupCharacterVisibility(loadingActivityVisibility = true)
     }
 
@@ -167,4 +186,8 @@ class HomeActivity : AppCompatActivity() {
         comicsList.changeVisibility(comicsListVisibility)
         comicsError.changeVisibility(comicsErrorVisibility)
     }
+
+//    override fun onRefresh() {
+//        Toast.makeText(this@HomeActivity, "refresh", Toast.LENGTH_SHORT).show()
+//    }
 }

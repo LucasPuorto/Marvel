@@ -1,203 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue_grey_800"
-    android:overScrollMode="never"
-    android:scrollbars="none">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/blue_grey_800"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHomeStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/guideline_default_start" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHomeEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/guideline_default_end" />
-
-        <ImageView
-            android:id="@+id/ivMarvelLogo"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="@dimen/home_logo_height"
-            android:background="@color/red_A700"
-            android:importantForAccessibility="no"
-            android:src="@drawable/ic_marvel_logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilSearchContainer"
-            style="@style/TextInputLayout"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:hint="@string/search_character"
-            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
-            app:layout_constraintTop_toBottomOf="@id/ivMarvelLogo">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieSearch"
-                style="@style/TextInputLayout.EditText"
-                android:layout_width="match_parent"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineHomeStart"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawableEnd="@drawable/ic_search"
-                android:imeOptions="actionSearch"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/guideline_default_start" />
 
-        <TextView
-            android:id="@+id/tvCharacterError"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_32"
-            android:gravity="center"
-            android:lineSpacingExtra="@dimen/line_spacing_extra_default"
-            android:text="@string/character_loading_error"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size_16"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
-            app:layout_constraintTop_toBottomOf="@id/tilSearchContainer" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineHomeEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/guideline_default_end" />
 
-        <TextView
-            android:id="@+id/tvCharacterName"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size_24"
-            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
-            app:layout_constraintTop_toBottomOf="@id/tilSearchContainer"
-            tools:text="Spider-Man" />
+            <ImageView
+                android:id="@+id/ivMarvelLogo"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="@dimen/home_logo_height"
+                android:background="@color/red_A700"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_marvel_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivCharacterImage"
-            android:layout_width="@dimen/home_character_image_width"
-            android:layout_height="@dimen/home_character_image_height"
-            android:layout_marginTop="@dimen/margin_16"
-            android:importantForAccessibility="no"
-            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
-            app:layout_constraintTop_toBottomOf="@id/tvCharacterName" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSearchContainer"
+                style="@style/TextInputLayout"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:hint="@string/search_character"
+                app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
+                app:layout_constraintTop_toBottomOf="@id/ivMarvelLogo">
 
-        <TextView
-            android:id="@+id/tvCharacterDescription"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:lineSpacingExtra="@dimen/line_spacing_extra_default"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
-            app:layout_constraintTop_toBottomOf="@id/ivCharacterImage"
-            tools:text="Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people." />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tieSearch"
+                    style="@style/TextInputLayout.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableEnd="@drawable/ic_search"
+                    android:imeOptions="actionSearch"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tvComicsLabel"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24"
-            android:text="@string/home_comics_label"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size_18"
-            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
-            app:layout_constraintTop_toBottomOf="@id/tvCharacterDescription" />
+            <TextView
+                android:id="@+id/tvCharacterError"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_32"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_default"
+                android:text="@string/character_loading_error"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_16"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
+                app:layout_constraintTop_toBottomOf="@id/tilSearchContainer" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvComics"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
-            android:layout_marginBottom="@dimen/margin_24"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:overScrollMode="never"
-            android:paddingStart="@dimen/padding_24"
-            android:paddingEnd="@dimen/padding_24"
-            android:scrollbars="none"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvComicsLabel"
-            tools:itemCount="5"
-            tools:listitem="@layout/view_details_card" />
+            <TextView
+                android:id="@+id/tvCharacterName"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_24"
+                app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
+                app:layout_constraintTop_toBottomOf="@id/tilSearchContainer"
+                tools:text="Spider-Man" />
 
-        <include
-            android:id="@+id/comicsErrorView"
-            layout="@layout/view_comics_error"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_24"
-            android:layout_marginBottom="@dimen/margin_24"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
-            app:layout_constraintTop_toBottomOf="@id/tvComicsLabel" />
+            <ImageView
+                android:id="@+id/ivCharacterImage"
+                android:layout_width="@dimen/home_character_image_width"
+                android:layout_height="@dimen/home_character_image_height"
+                android:layout_marginTop="@dimen/margin_16"
+                android:importantForAccessibility="no"
+                app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacterName" />
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerLoadingActivity"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_24"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilSearchContainer"
-            app:layout_constraintVertical_bias="0.0">
+            <TextView
+                android:id="@+id/tvCharacterDescription"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:lineSpacingExtra="@dimen/line_spacing_extra_default"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
+                app:layout_constraintTop_toBottomOf="@id/ivCharacterImage"
+                tools:text="Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people." />
 
-            <include layout="@layout/view_home_placeholder" />
-        </com.facebook.shimmer.ShimmerFrameLayout>
+            <TextView
+                android:id="@+id/tvComicsLabel"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_24"
+                android:text="@string/home_comics_label"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_18"
+                app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacterDescription" />
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerLoadingComics"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_24"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvComicsLabel"
-            app:layout_constraintVertical_bias="0.0">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvComics"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginBottom="@dimen/margin_24"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:paddingStart="@dimen/padding_24"
+                android:paddingEnd="@dimen/padding_24"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvComicsLabel"
+                tools:itemCount="5"
+                tools:listitem="@layout/view_details_card" />
 
-            <include layout="@layout/view_home_comics_list_placeholder" />
-        </com.facebook.shimmer.ShimmerFrameLayout>
+            <include
+                android:id="@+id/comicsErrorView"
+                layout="@layout/view_comics_error"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_24"
+                android:layout_marginBottom="@dimen/margin_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
+                app:layout_constraintTop_toBottomOf="@id/tvComicsLabel" />
 
-        <View
-            android:id="@+id/snack_bar"
-            android:layout_width="@dimen/match_constraints"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineHomeStart"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerLoadingActivity"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilSearchContainer"
+                app:layout_constraintVertical_bias="0.0">
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/characterInformation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:constraint_referenced_ids="tvCharacterName, ivCharacterImage, tvCharacterDescription, tvComicsLabel, rvComics" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                <include layout="@layout/view_home_placeholder" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerLoadingComics"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvComicsLabel"
+                app:layout_constraintVertical_bias="0.0">
+
+                <include layout="@layout/view_home_comics_list_placeholder" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <View
+                android:id="@+id/snack_bar"
+                android:layout_width="@dimen/match_constraints"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guidelineHomeEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineHomeStart" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/characterInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="tvCharacterName, ivCharacterImage, tvCharacterDescription, tvComicsLabel, rvComics" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
