@@ -36,7 +36,9 @@ Abaixo escrevi alguns cenários de caso de uso da aplicação.
   - Testes unitários com pattern AAA
   
 ### API
-Marvel Documentation: https://developer.marvel.com/
+Marvel Documentation: 
+  - https://developer.marvel.com/
+  - https://developer.marvel.com/docs
 
 ### Melhorias/Features futuras:
   - Expandir a imagens dos quadrinhos e exibir a descrição de cada um 
