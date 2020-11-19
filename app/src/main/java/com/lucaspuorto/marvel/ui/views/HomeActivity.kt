@@ -51,6 +51,7 @@ class HomeActivity : AppCompatActivity() {
     private val snackBarView: View by lazy { findViewById(R.id.snack_bar) }
 
     private var character: String = ""
+    private var characterId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +62,7 @@ class HomeActivity : AppCompatActivity() {
     private fun initView() {
         setupRecyclerView()
         setupSwipeRefresh()
+        setupComicsErrorClickListener()
         setupCharacterSearch()
     }
 
@@ -73,8 +75,14 @@ class HomeActivity : AppCompatActivity() {
             isEnabled = character.isNotEmpty()
             setColorSchemeResources(R.color.red_900)
             setOnRefreshListener {
-                checkConnection(this@HomeActivity, snackBarView, resources) { whenHaveConnectionCallCharacter(character) }
+                checkConnection(this@HomeActivity, snackBarView, resources) { whenHaveConnectionCallCharacter() }
             }
+        }
+    }
+
+    private fun setupComicsErrorClickListener() {
+        comicsError.setOnClickListener {
+            checkConnection(this@HomeActivity, snackBarView, resources) { whenHaveConnectionCallComicsList() }
         }
     }
 
@@ -85,17 +93,15 @@ class HomeActivity : AppCompatActivity() {
                     hideKeyboard()
                     character = tilSearchContainer.editText?.text.toString()
                     swipeRefresh.isEnabled = character.isNotEmpty()
-                    checkConnection(this@HomeActivity, snackBarView, resources) {
-                        whenHaveConnectionCallCharacter(character)
-                    }
+                    checkConnection(this@HomeActivity, snackBarView, resources) { whenHaveConnectionCallCharacter() }
                 }
             }
             false
         }
     }
 
-    private fun whenHaveConnectionCallCharacter(inputText: String) {
-        viewModel.getCharacter(inputText).observe(this@HomeActivity, { state -> onGetCharacterResponse(state) })
+    private fun whenHaveConnectionCallCharacter() {
+        viewModel.getCharacter(character).observe(this@HomeActivity, { state -> onGetCharacterResponse(state) })
     }
 
     private fun onGetCharacterResponse(state: StateResponse<CharacterViewData>) {
@@ -116,7 +122,8 @@ class HomeActivity : AppCompatActivity() {
     private fun onGetCharacterSuccess(data: CharacterViewData) {
         setupCharacterVisibility(characterInformationVisibility = true)
         setupCharacterInformation(data)
-        checkConnection(this@HomeActivity, snackBarView, resources) { whenHaveConnectionCallComicsList(data) }
+        characterId = data.characterId
+        checkConnection(this@HomeActivity, snackBarView, resources) { whenHaveConnectionCallComicsList() }
     }
 
     private fun setupCharacterInformation(data: CharacterViewData) {
@@ -132,8 +139,8 @@ class HomeActivity : AppCompatActivity() {
             .into(characterImage)
     }
 
-    private fun whenHaveConnectionCallComicsList(data: CharacterViewData) {
-        viewModel.getComics(data.characterId).observe(this@HomeActivity, { state -> onGetComicsListResponse(state) })
+    private fun whenHaveConnectionCallComicsList() {
+        viewModel.getComics(characterId).observe(this@HomeActivity, { state -> onGetComicsListResponse(state) })
     }
 
     private fun onGetCharacterError() {
