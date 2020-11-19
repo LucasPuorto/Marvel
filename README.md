@@ -34,6 +34,9 @@ Abaixo escrevi alguns cenários de caso de uso da aplicação.
   - ViewModel
   - Coroutines
   - Testes unitários com pattern AAA
+  
+### API
+Marvel Documentation: https://developer.marvel.com/
 
 ### Melhorias/Features futuras:
   - Expandir a imagens dos quadrinhos e exibir a descrição de cada um 
