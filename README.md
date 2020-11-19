@@ -23,6 +23,8 @@ Abaixo escrevi alguns cenários de caso de uso da aplicação.
 | Placeholder | estou aguardando a lista de quadrinhos carregar | encontro uma imagem do quadrinho carregando | vejo um placeholder no lugar das quadrinhos |
 
 
-Melhorias/Features:
+Melhorias/Features futuras:
   - Expandir a imagens dos quadrinhos e exibir a descrição de cada um 
   - Lista de sugestões para facilitar na busca de personagens
+
+Caso deseje, poderá fazer o [Download do APK](https://drive.google.com/file/d/1vRNDP0HrhfvTWg1qaAVnv4MZfm0Ypo2l/view?usp=sharing) aqui
