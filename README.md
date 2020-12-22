@@ -19,7 +19,7 @@ Abaixo escrevi alguns cenários de caso de uso da aplicação.
 | --- | --- | --- | --- |
 | Pesquisa vazia | estou na home do aplicativo | realizo a pesquisa sem nenhum caractere no campo | vejo uma modal de erro |
 | Pesquisa com sucesso | estou na home do aplicativo | pesquiso por Spider-man | vejo a tela do herói pesquisado  |
-| pesquisa sem internet | estou sem conexão de internet | realizo uma pesquisa  | vejo uma modal sem conexão |
+| Pesquisa sem internet | estou sem conexão de internet | realizo uma pesquisa  | vejo uma modal sem conexão |
 | Encurtamento do título de quadrinhos | realizei uma pesquisa | encontro um quadrinho com título maior que 3 linhas | o título é encurtado com "..." |
 | Pesquisa com nome diferente da base de dados | estou na home do aplicativo | pesquiso por Spider Man | vejo uma modal de erro |
 | Shimmer | estou no carregamento de uma pesquisa | estou aguardando carregar as informações | vejo shimmer no lugar do herói e imagens de quadrinhos |
