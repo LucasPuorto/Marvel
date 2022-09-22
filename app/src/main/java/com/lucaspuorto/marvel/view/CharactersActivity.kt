@@ -22,15 +22,15 @@ class CharactersActivity : AppCompatActivity() {
         setupRecyclerView()
     }
 
-    private fun setupRecyclerView() {
-        binding.rvCharacters.adapter = adapter
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.character_menu, menu)
         setupCharacterSearch(menu)
         setupFavoritesButton(menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvCharacters.adapter = adapter
     }
 
     private fun setupCharacterSearch(menu: Menu?) {
