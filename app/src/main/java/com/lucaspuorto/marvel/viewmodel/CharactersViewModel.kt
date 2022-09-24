@@ -23,9 +23,10 @@ class CharactersViewModel(
     private fun getCharacters() {
         viewModelScope.launch {
             val response = repository.getCharacters()
-            if (response.isSuccessful) {
-                val mappedResponse = CharacterResponseMapper().transform(response.body())
-                charactersMutableLiveData.postValue(CharactersUiState.Success(mappedResponse.data.results))
+            val responseData = response.body()?.data
+            if (response.isSuccessful && responseData != null) {
+                val mappedResponse = CharacterResponseMapper().transform(responseData.results)
+                charactersMutableLiveData.postValue(CharactersUiState.Success(mappedResponse))
             } else {
                 charactersMutableLiveData.postValue(CharactersUiState.Error)
             }
