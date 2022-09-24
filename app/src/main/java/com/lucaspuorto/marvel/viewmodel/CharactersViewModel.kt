@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.lucaspuorto.marvel.repository.MarvelRepository
 import com.lucaspuorto.marvel.viewmodel.mapper.CharacterResponseMapper
 import com.lucaspuorto.marvel.viewmodel.uistate.CharactersUiState
+import com.lucaspuorto.marvel.viewmodel.uistate.LoadingUiState
 import kotlinx.coroutines.launch
 
 class CharactersViewModel(
@@ -16,20 +17,31 @@ class CharactersViewModel(
     private val charactersMutableLiveData = MutableLiveData<CharactersUiState>()
     val charactersLiveData: LiveData<CharactersUiState> get() = charactersMutableLiveData
 
+    private val loadingMutableLiveData = MutableLiveData<LoadingUiState>()
+    val loadingLiveData: LiveData<LoadingUiState> get() = loadingMutableLiveData
+
     init {
         getCharacters()
     }
 
     private fun getCharacters() {
         viewModelScope.launch {
+            loadingMutableLiveData.postValue(LoadingUiState.Show)
             val response = repository.getCharacters()
-            val responseData = response.body()?.data
-            if (response.isSuccessful && responseData != null) {
-                val mappedResponse = CharacterResponseMapper().transform(responseData.results)
-                charactersMutableLiveData.postValue(CharactersUiState.Success(mappedResponse))
-            } else {
-                charactersMutableLiveData.postValue(CharactersUiState.Error)
-            }
+            response.body()?.data?.let { responseData ->
+                if (response.isSuccessful) {
+                    val mappedResponse = CharacterResponseMapper().transform(responseData.results)
+                    charactersMutableLiveData.postValue(CharactersUiState.Success(mappedResponse))
+                    loadingMutableLiveData.postValue(LoadingUiState.Hide)
+                } else {
+                    setCharactersErrorState()
+                }
+            } ?: setCharactersErrorState()
         }
+    }
+
+    private fun setCharactersErrorState() {
+        charactersMutableLiveData.postValue(CharactersUiState.Error)
+        loadingMutableLiveData.postValue(LoadingUiState.Hide)
     }
 }

@@ -9,6 +9,7 @@ import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ActivityCharctersBinding
 import com.lucaspuorto.marvel.viewmodel.CharactersViewModel
 import com.lucaspuorto.marvel.viewmodel.uistate.CharactersUiState
+import com.lucaspuorto.marvel.viewmodel.uistate.LoadingUiState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersActivity : AppCompatActivity() {
@@ -35,11 +36,21 @@ class CharactersActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    //TODO: Remove Toasts
     private fun setupObserve() {
-        viewModel.charactersLiveData.observe(this) {
-            when (it) {
-                is CharactersUiState.Success -> adapter.submitList(it.charactersList)
-                CharactersUiState.Error -> Toast.makeText(this, "Erro", Toast.LENGTH_LONG).show()
+        viewModel.run {
+            loadingLiveData.observe(this@CharactersActivity) { loadingState ->
+                when (loadingState) {
+                    LoadingUiState.Show -> Toast.makeText(this@CharactersActivity, "Show Loading", Toast.LENGTH_LONG).show()
+                    LoadingUiState.Hide -> Toast.makeText(this@CharactersActivity, "Hide Loading", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            charactersLiveData.observe(this@CharactersActivity) {
+                when (it) {
+                    is CharactersUiState.Success -> adapter.submitList(it.charactersList)
+                    CharactersUiState.Error -> Toast.makeText(this@CharactersActivity, "Erro", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
