@@ -30,8 +30,11 @@ class CharactersViewModel(
             val response = repository.getCharacters()
             response.body()?.data?.let { responseData ->
                 if (response.isSuccessful) {
-                    val mappedResponse = CharacterResponseMapper().transform(responseData.results)
-                    charactersMutableLiveData.postValue(CharactersUiState.Success(mappedResponse))
+                    charactersMutableLiveData.postValue(
+                        CharactersUiState.Success(
+                            CharacterResponseMapper().transform(responseData.results)
+                        )
+                    )
                     loadingMutableLiveData.postValue(LoadingUiState.Hide)
                 } else {
                     setCharactersErrorState()
