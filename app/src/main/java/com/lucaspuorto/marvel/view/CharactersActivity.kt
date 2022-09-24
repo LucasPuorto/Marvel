@@ -7,18 +7,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ActivityCharctersBinding
+import com.lucaspuorto.marvel.viewmodel.CharactersViewModel
+import com.lucaspuorto.marvel.viewmodel.uistate.CharactersUiState
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCharctersBinding
 
-    private val adapter = CharacterAdapter()
+    private val viewModel: CharactersViewModel by viewModel()
+
+    private val adapter = CharactersAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCharctersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupObserve()
         setupRecyclerView()
     }
 
@@ -27,6 +33,15 @@ class CharactersActivity : AppCompatActivity() {
         setupCharacterSearch(menu)
         setupFavoritesButton(menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun setupObserve() {
+        viewModel.charactersLiveData.observe(this) {
+            when (it) {
+                is CharactersUiState.Success -> adapter.submitList(it.charactersList)
+                CharactersUiState.Error -> Toast.makeText(this, "Erro", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun setupRecyclerView() {
