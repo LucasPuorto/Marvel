@@ -22,3 +22,8 @@ sealed class FavoriteButtonUiState {
     object IsFavorite : FavoriteButtonUiState()
     object NotFavorite : FavoriteButtonUiState()
 }
+
+sealed class FavoritesUiState {
+    class HasFavorites(val favorites: List<CharacterModel>) : FavoritesUiState()
+    object HasNoFavorites : FavoritesUiState()
+}
