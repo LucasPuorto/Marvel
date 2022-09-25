@@ -11,13 +11,15 @@ import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ItemFavoriteCharcterBinding
 import com.lucaspuorto.marvel.model.CharacterModel
 
-class FavoriteCharactersAdapter : ListAdapter<CharacterModel, FavoriteCharactersAdapter.FavoriteCharacterViewHolder>(FavoriteCharacterDiffCallBack()) {
+class FavoriteCharactersAdapter(
+    private val characterClick: (CharacterModel) -> Unit
+) : ListAdapter<CharacterModel, FavoriteCharactersAdapter.FavoriteCharacterViewHolder>(FavoriteCharacterDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteCharacterViewHolder =
         FavoriteCharacterViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: FavoriteCharacterViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), characterClick)
     }
 
     class FavoriteCharacterViewHolder(private val binding: ItemFavoriteCharcterBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -30,7 +32,7 @@ class FavoriteCharactersAdapter : ListAdapter<CharacterModel, FavoriteCharacters
             }
         }
 
-        fun bind(character: CharacterModel) {
+        fun bind(character: CharacterModel, characterClick: (CharacterModel) -> Unit) {
             binding.apply {
                 tvCharacter.text = character.name
                 Glide.with(binding.root.context)
@@ -38,6 +40,7 @@ class FavoriteCharactersAdapter : ListAdapter<CharacterModel, FavoriteCharacters
                     .placeholder(R.drawable.ic_placeholder)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(binding.ivCharacter)
+                root.setOnClickListener { characterClick.invoke(character) }
             }
         }
     }

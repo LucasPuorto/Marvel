@@ -10,7 +10,9 @@ class FavoriteCharactersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavoriteCharactersBinding
 
-    private val adapter = FavoriteCharactersAdapter()
+    private val adapter = FavoriteCharactersAdapter() { character ->
+        startActivity(CharacterDetailsActivity.getIntent(this, character))
+    }
 
     companion object {
         fun getIntent(context: Context): Intent =
