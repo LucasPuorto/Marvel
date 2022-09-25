@@ -3,4 +3,5 @@
 
     <string name="search">Search</string>
     <string name="item">Item</string>
+    <string name="search_list_empty_label">Não foi possível encontrar nenhum personagem com este nome, tente novamente</string>
 </resources>

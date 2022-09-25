@@ -25,6 +25,20 @@
         tools:listitem="@layout/item_charcter"
         tools:visibility="visible" />
 
+    <include
+        android:id="@+id/include_empty_list"
+        layout="@layout/include_empty_characters_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="gone" />
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_characters"
         android:layout_width="match_parent"
