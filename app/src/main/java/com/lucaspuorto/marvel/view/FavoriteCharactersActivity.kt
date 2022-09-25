@@ -12,7 +12,6 @@ class FavoriteCharactersActivity : AppCompatActivity() {
 
     private val adapter = FavoriteCharactersAdapter()
 
-
     companion object {
         fun getIntent(context: Context): Intent =
             Intent(context, FavoriteCharactersActivity::class.java)
