@@ -44,9 +44,7 @@ class CharactersActivity : AppCompatActivity() {
     }
 
     private fun favoriteClick(character: CharacterModel, position: Int) {
-        if (character.isFavorite) viewModel.removingFromFavorite(character)
-        else viewModel.addingAsFavorite(character)
-
+        viewModel.favoriteStateChange(character)
         adapter.notifyItemChanged(position)
     }
 

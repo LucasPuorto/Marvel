@@ -78,14 +78,19 @@ class CharactersViewModel(
         }
     }
 
-    fun addingAsFavorite(character: CharacterModel) {
+    fun favoriteStateChange(character: CharacterModel) {
+        if (character.isFavorite) removingFromFavorite(character)
+        else addingAsFavorite(character)
+    }
+
+    private fun addingAsFavorite(character: CharacterModel) {
         viewModelScope.launch(Dispatchers.IO) {
             character.isFavorite = true
             repository.addingAsFavorite(character)
         }
     }
 
-    fun removingFromFavorite(character: CharacterModel) {
+    private fun removingFromFavorite(character: CharacterModel) {
         viewModelScope.launch(Dispatchers.IO) {
             character.isFavorite = false
             repository.removingFromFavorite(character)
