@@ -13,5 +13,5 @@ data class CharacterModel(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "thumbnail") val thumbnail: String,
-    @ColumnInfo(name = "asFavorite") var asFavorite: Boolean = false
+    @ColumnInfo(name = "isFavorite") var isFavorite: Boolean = false
 ) : Parcelable
