@@ -37,11 +37,13 @@ class CharactersViewModel(
     }
 
     private fun getCharacters() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             loadingMutableLiveData.postValue(LoadingUiState.Show)
             val response = repository.getCharacters()
             response.body()?.data?.let { responseData ->
-                val mappedData = CharacterResponseMapper().transform(responseData.results)
+                val mappedData = checkIfHasFavoriteCharacters(
+                    CharacterResponseMapper().transform(responseData.results)
+                )
 
                 if (response.isSuccessful) {
                     allCharacters.addAll(mappedData)
@@ -54,9 +56,28 @@ class CharactersViewModel(
         }
     }
 
+    private fun checkIfHasFavoriteCharacters(fromServer: List<CharacterModel>): List<CharacterModel> {
+        viewModelScope.launch(Dispatchers.Default) {
+            val favorites: List<CharacterModel> = repository.getAllFavorites()
+            fromServer.map { characterFromServer ->
+                characterFromServer.isFavorite = false
+                favorites.map { favorite ->
+                    if (characterFromServer.id == favorite.id) {
+                        characterFromServer.isFavorite = favorite.isFavorite
+                    }
+                }
+            }
+        }
+        return fromServer
+    }
+
     private fun setCharactersErrorState() {
         charactersMutableLiveData.postValue(CharactersUiState.Error)
         loadingMutableLiveData.postValue(LoadingUiState.Hide)
+    }
+
+    fun updateCharactersList() {
+        charactersMutableLiveData.postValue(CharactersUiState.Success(checkIfHasFavoriteCharacters(allCharacters)))
     }
 
     fun searchFilter(searchText: String?) {
