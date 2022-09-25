@@ -2,6 +2,7 @@ package com.lucaspuorto.marvel.core
 
 import android.app.Application
 import com.lucaspuorto.marvel.di.ApiModule
+import com.lucaspuorto.marvel.di.DatabaseModule
 import com.lucaspuorto.marvel.di.NetworkModule
 import com.lucaspuorto.marvel.di.RepositoryModule
 import com.lucaspuorto.marvel.di.ViewModelModule
@@ -22,7 +23,8 @@ class MarvelApplication : Application() {
                     NetworkModule.network,
                     RepositoryModule.repository,
                     ApiModule.api,
-                    ViewModelModule.viewModel
+                    ViewModelModule.viewModel,
+                    DatabaseModule.database
                 )
             )
         }
