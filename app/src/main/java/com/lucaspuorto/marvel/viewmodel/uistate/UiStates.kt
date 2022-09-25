@@ -17,3 +17,8 @@ sealed class SearchCharacterUiState {
     object HasNoMatch : SearchCharacterUiState()
     class MinCharsUnreached(val charactersList: List<CharacterModel>) : SearchCharacterUiState()
 }
+
+sealed class FavoriteButtonUiState {
+    object IsFavorite : FavoriteButtonUiState()
+    object NotFavorite : FavoriteButtonUiState()
+}
