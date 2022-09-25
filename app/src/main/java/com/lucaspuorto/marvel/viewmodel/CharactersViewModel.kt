@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lucaspuorto.marvel.model.CharacterModel
+import com.lucaspuorto.marvel.db.model.CharacterModel
 import com.lucaspuorto.marvel.repository.MarvelRepository
 import com.lucaspuorto.marvel.viewmodel.mapper.CharacterResponseMapper
 import com.lucaspuorto.marvel.viewmodel.uistate.CharactersUiState
@@ -75,6 +75,20 @@ class CharactersViewModel(
                 auxCharacters.clear()
                 searchMutableLiveData.postValue(SearchCharacterUiState.MinCharsUnreached(allCharacters))
             }
+        }
+    }
+
+    fun addingAsFavorite(character: CharacterModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            character.isFavorite = true
+            repository.addingAsFavorite(character)
+        }
+    }
+
+    fun removingFromFavorite(character: CharacterModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            character.isFavorite = false
+            repository.removingFromFavorite(character)
         }
     }
 }
