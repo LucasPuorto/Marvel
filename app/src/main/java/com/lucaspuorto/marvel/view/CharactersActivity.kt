@@ -21,7 +21,9 @@ class CharactersActivity : AppCompatActivity() {
 
     private val viewModel: CharactersViewModel by viewModel()
 
-    private val adapter = CharactersAdapter()
+    private val adapter = CharactersAdapter() { character ->
+        startActivity(CharacterDetailsActivity.getIntent(this, character))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
