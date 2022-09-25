@@ -12,6 +12,7 @@ import com.lucaspuorto.marvel.util.visible
 import com.lucaspuorto.marvel.viewmodel.CharactersViewModel
 import com.lucaspuorto.marvel.viewmodel.uistate.CharactersUiState
 import com.lucaspuorto.marvel.viewmodel.uistate.LoadingUiState
+import com.lucaspuorto.marvel.viewmodel.uistate.SearchCharacterUiState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersActivity : AppCompatActivity() {
@@ -46,6 +47,10 @@ class CharactersActivity : AppCompatActivity() {
 
             charactersLiveData.observe(this@CharactersActivity) { charactersState ->
                 handlerCharacters(charactersState)
+            }
+
+            searchLiveData.observe(this@CharactersActivity) { charactersList ->
+                handlerSearchCharacter(charactersList)
             }
         }
     }
@@ -83,6 +88,34 @@ class CharactersActivity : AppCompatActivity() {
         }
     }
 
+    private fun handlerSearchCharacter(charactersState: SearchCharacterUiState) {
+        when (charactersState) {
+            is SearchCharacterUiState.HasMatch -> {
+                adapter.submitList(charactersState.charactersList)
+                showEmptyCharactersList(false)
+            }
+            SearchCharacterUiState.HasNoMatch -> {
+                showEmptyCharactersList(true)
+            }
+            is SearchCharacterUiState.MinCharsUnreached -> {
+                adapter.submitList(charactersState.charactersList)
+                showEmptyCharactersList(false)
+            }
+        }
+    }
+
+    private fun showEmptyCharactersList(show: Boolean) {
+        binding.apply {
+            if (show) {
+                rvCharacters.gone
+                includeEmptyList.root.visible
+            } else {
+                rvCharacters.visible
+                includeEmptyList.root.gone
+            }
+        }
+    }
+
     private fun setupRecyclerView() {
         binding.rvCharacters.adapter = adapter
     }
@@ -99,7 +132,7 @@ class CharactersActivity : AppCompatActivity() {
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    //TODO: Filter character
+                    viewModel.searchFilter(newText)
                     return true
                 }
             })
