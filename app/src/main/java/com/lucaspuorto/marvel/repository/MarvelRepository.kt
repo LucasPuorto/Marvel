@@ -8,6 +8,6 @@ interface MarvelRepository {
 
     suspend fun getCharacters(): Response<CharactersResponse>
     suspend fun getAllFavorites(): List<CharacterModel>
-    suspend fun addAsFavorite(character: CharacterModel)
-    suspend fun removeAsFavorite(character: CharacterModel)
+    suspend fun addingAsFavorite(character: CharacterModel)
+    suspend fun removingFromFavorite(character: CharacterModel)
 }

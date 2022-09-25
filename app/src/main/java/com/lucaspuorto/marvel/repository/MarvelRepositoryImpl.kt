@@ -2,7 +2,7 @@ package com.lucaspuorto.marvel.repository
 
 import com.lucaspuorto.marvel.api.MarvelApi
 import com.lucaspuorto.marvel.db.FavoriteCharacterDao
-import com.lucaspuorto.marvel.db.model.FavoriteCharacter
+import com.lucaspuorto.marvel.db.model.CharacterModel
 import com.lucaspuorto.marvel.model.CharactersResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -21,6 +21,16 @@ class MarvelRepositoryImpl(
             api.getCharacters(timestamp, hash, publicKey)
         }
 
-    override suspend fun getAllFavorites(): List<FavoriteCharacter> =
+    override suspend fun getAllFavorites(): List<CharacterModel> =
         favoriteCharacterDao.getAll()
+
+    override suspend fun addingAsFavorite(character: CharacterModel) {
+        character.isFavorite = true
+        favoriteCharacterDao.insert(character)
+    }
+
+    override suspend fun removingFromFavorite(character: CharacterModel) {
+        character.isFavorite = false
+        favoriteCharacterDao.delete(character)
+    }
 }
