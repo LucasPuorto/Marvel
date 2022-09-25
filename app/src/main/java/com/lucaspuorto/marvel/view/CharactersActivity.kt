@@ -36,6 +36,12 @@ class CharactersActivity : AppCompatActivity() {
         setupRecyclerView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.updateCharactersList()
+        adapter.notifyDataSetChanged()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.character_menu, menu)
         setupCharacterSearch(menu)
