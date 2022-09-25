@@ -3,7 +3,6 @@ package com.lucaspuorto.marvel.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.lucaspuorto.marvel.databinding.ActivityFavoriteCharactersBinding
 import com.lucaspuorto.marvel.viewmodel.FavoriteCharactersViewModel
@@ -34,8 +33,8 @@ class FavoriteCharactersActivity : AppCompatActivity() {
     }
 
     private fun setupObserve() {
-        viewModel.allFavoritesLiveData.observe(this) {
-            Toast.makeText(this, it.size.toString(), Toast.LENGTH_LONG).show()
+        viewModel.allFavoritesLiveData.observe(this) { favoriteCharacters ->
+            adapter.submitList(favoriteCharacters)
         }
     }
 
