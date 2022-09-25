@@ -11,13 +11,15 @@ import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ItemCharcterBinding
 import com.lucaspuorto.marvel.model.CharacterModel
 
-class CharactersAdapter : ListAdapter<CharacterModel, CharactersAdapter.CharacterViewHolder>(CharacterDiffCallBack()) {
+class CharactersAdapter(
+    private val characterClick: (CharacterModel) -> Unit
+) : ListAdapter<CharacterModel, CharactersAdapter.CharacterViewHolder>(CharacterDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder =
         CharacterViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), characterClick)
     }
 
     class CharacterViewHolder(private val binding: ItemCharcterBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -30,7 +32,7 @@ class CharactersAdapter : ListAdapter<CharacterModel, CharactersAdapter.Characte
             }
         }
 
-        fun bind(character: CharacterModel) {
+        fun bind(character: CharacterModel, characterClick: (CharacterModel) -> Unit) {
             binding.apply {
                 tvCharacter.text = character.name
                 Glide.with(binding.root.context)
@@ -38,6 +40,7 @@ class CharactersAdapter : ListAdapter<CharacterModel, CharactersAdapter.Characte
                     .placeholder(R.drawable.ic_placeholder)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(binding.ivCharacter)
+                root.setOnClickListener { characterClick.invoke(character) }
             }
         }
     }
