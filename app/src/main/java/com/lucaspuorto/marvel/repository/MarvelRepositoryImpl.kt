@@ -25,12 +25,10 @@ class MarvelRepositoryImpl(
         favoriteCharacterDao.getAll()
 
     override suspend fun addingAsFavorite(character: CharacterModel) {
-        character.isFavorite = true
         favoriteCharacterDao.insert(character)
     }
 
     override suspend fun removingFromFavorite(character: CharacterModel) {
-        character.isFavorite = false
         favoriteCharacterDao.delete(character)
     }
 }
