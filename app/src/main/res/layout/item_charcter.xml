@@ -41,13 +41,13 @@
             android:textSize="18sp"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/mbt_as_favorite"
+            app:layout_constraintEnd_toStartOf="@id/mbt_is_favorite"
             app:layout_constraintStart_toEndOf="@id/iv_character"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@tools:sample/last_names" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbt_as_favorite"
+            android:id="@+id/mbt_is_favorite"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/ic_baseline_favorite_border"
