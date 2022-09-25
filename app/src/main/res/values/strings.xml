@@ -7,4 +7,7 @@
 
     // Characters Activity
     <string name="search_list_empty_label">Não foi possível encontrar nenhum personagem com este nome, tente novamente</string>
+
+    // Favorites Activity
+    <string name="favorites_list_empty_label">Você não possui nenhum personagem adicionado aos favoritos. Volte para a lista de personagens e adicione os seus personagens favoritos</string>
 </resources>

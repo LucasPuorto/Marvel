@@ -123,7 +123,10 @@ class CharactersActivity : AppCompatActivity() {
         binding.apply {
             if (show) {
                 rvCharacters.gone
-                includeEmptyList.root.visible
+                includeEmptyList.apply {
+                    root.visible
+                    tvEmptyList.text = getString(R.string.search_list_empty_label)
+                }
             } else {
                 rvCharacters.visible
                 includeEmptyList.root.gone
