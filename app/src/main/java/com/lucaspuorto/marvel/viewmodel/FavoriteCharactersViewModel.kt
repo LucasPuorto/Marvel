@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lucaspuorto.marvel.db.model.FavoriteCharacter
+import com.lucaspuorto.marvel.db.model.CharacterModel
 import com.lucaspuorto.marvel.repository.MarvelRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,8 +13,8 @@ class FavoriteCharactersViewModel(
     private val repository: MarvelRepository
 ) : ViewModel() {
 
-    private val allFavoritesMutableLiveData = MutableLiveData<List<FavoriteCharacter>>()
-    val allFavoritesLiveData: LiveData<List<FavoriteCharacter>> get() = allFavoritesMutableLiveData
+    private val allFavoritesMutableLiveData = MutableLiveData<List<CharacterModel>>()
+    val allFavoritesLiveData: LiveData<List<CharacterModel>> get() = allFavoritesMutableLiveData
 
     init {
         getAllFavorites()

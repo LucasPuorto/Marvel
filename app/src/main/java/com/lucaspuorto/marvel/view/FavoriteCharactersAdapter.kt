@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ItemFavoriteCharcterBinding
-import com.lucaspuorto.marvel.model.CharacterModel
+import com.lucaspuorto.marvel.db.model.CharacterModel
 
 class FavoriteCharactersAdapter(
     private val characterClick: (CharacterModel) -> Unit
