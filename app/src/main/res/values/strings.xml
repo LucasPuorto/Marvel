@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Marvel</string>
 
+    // Menu
     <string name="search">Search</string>
     <string name="item">Item</string>
+
+    // Characters Activity
+    <string name="search_list_empty_label">Não foi possível encontrar nenhum personagem com este nome, tente novamente</string>
 </resources>

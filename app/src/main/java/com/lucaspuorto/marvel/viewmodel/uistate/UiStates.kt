@@ -11,3 +11,9 @@ sealed class LoadingUiState {
     object Show : LoadingUiState()
     object Hide : LoadingUiState()
 }
+
+sealed class SearchCharacterUiState {
+    class HasMatch(val charactersList: List<CharacterModel>) : SearchCharacterUiState()
+    object HasNoMatch : SearchCharacterUiState()
+    class MinCharsUnreached(val charactersList: List<CharacterModel>) : SearchCharacterUiState()
+}
