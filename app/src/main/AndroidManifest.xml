@@ -28,9 +28,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".view.CharacterDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.FavoriteCharactersActivity"
             android:exported="false" />
     </application>
 </manifest>

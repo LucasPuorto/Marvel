@@ -145,7 +145,7 @@ class CharactersActivity : AppCompatActivity() {
         val favorites = menu?.findItem(R.id.app_bar_favorites_character)
 
         favorites?.setOnMenuItemClickListener {
-            Toast.makeText(this, "favorites click", Toast.LENGTH_LONG).show()
+            startActivity(FavoriteCharactersActivity.getIntent(this))
             return@setOnMenuItemClickListener true
         }
     }
