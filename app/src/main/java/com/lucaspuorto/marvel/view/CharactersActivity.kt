@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ActivityCharactersBinding
+import com.lucaspuorto.marvel.db.model.CharacterModel
 import com.lucaspuorto.marvel.util.gone
 import com.lucaspuorto.marvel.util.visible
 import com.lucaspuorto.marvel.viewmodel.CharactersViewModel
@@ -21,9 +22,10 @@ class CharactersActivity : AppCompatActivity() {
 
     private val viewModel: CharactersViewModel by viewModel()
 
-    private val adapter = CharactersAdapter() { character ->
-        startActivity(CharacterDetailsActivity.getIntent(this, character))
-    }
+    private val adapter = CharactersAdapter(
+        characterClick = { character -> startActivity(CharacterDetailsActivity.getIntent(this, character)) },
+        favoriteClick = { character, position -> favoriteClick(character, position) }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,11 @@ class CharactersActivity : AppCompatActivity() {
         setupCharacterSearch(menu)
         setupFavoritesButton(menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun favoriteClick(character: CharacterModel, position: Int) {
+        viewModel.favoriteStateChange(character)
+        adapter.notifyItemChanged(position)
     }
 
     private fun setupObserve() {

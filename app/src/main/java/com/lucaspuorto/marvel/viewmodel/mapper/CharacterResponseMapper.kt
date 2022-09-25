@@ -1,6 +1,6 @@
 package com.lucaspuorto.marvel.viewmodel.mapper
 
-import com.lucaspuorto.marvel.model.CharacterModel
+import com.lucaspuorto.marvel.db.model.CharacterModel
 import com.lucaspuorto.marvel.model.CharacterResponse
 
 class CharacterResponseMapper {

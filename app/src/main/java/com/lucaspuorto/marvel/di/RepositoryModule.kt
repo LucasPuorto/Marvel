@@ -14,7 +14,7 @@ object RepositoryModule {
         val hash: String = Md5.get(timestamp)
 
         factory<MarvelRepository> {
-            MarvelRepositoryImpl(get(), timestamp, hash, PUBLIC_KEY)
+            MarvelRepositoryImpl(get(), timestamp, hash, PUBLIC_KEY, get())
         }
     }
 }

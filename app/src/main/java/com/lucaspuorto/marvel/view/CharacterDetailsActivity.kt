@@ -9,11 +9,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ActivityCharacterDetailsBinding
-import com.lucaspuorto.marvel.model.CharacterModel
+import com.lucaspuorto.marvel.db.model.CharacterModel
+import com.lucaspuorto.marvel.viewmodel.CharacterDetailsViewModel
+import com.lucaspuorto.marvel.viewmodel.uistate.FavoriteButtonUiState
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCharacterDetailsBinding
+
+    private val viewModel: CharacterDetailsViewModel by viewModel()
 
     companion object {
         private const val CHARACTER_KEY = "character_key"
@@ -36,17 +41,50 @@ class CharacterDetailsActivity : AppCompatActivity() {
         binding = ActivityCharacterDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        characterModel?.let {
+        setupObserve()
+        setupViews()
+    }
 
-            binding.tvCharacterName.text = it.name
-
-            Glide.with(binding.root.context)
-                .load(it.thumbnail)
-                .placeholder(R.drawable.ic_placeholder)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(binding.ivCharacterImage)
-
-            binding.tvCharacterDescription.text = it.description
+    private fun setupObserve() {
+        viewModel.favoriteLiveData.observe(this) { favoriteState ->
+            handlerFavoriteState(favoriteState)
         }
+    }
+
+    private fun handlerFavoriteState(favoriteState: FavoriteButtonUiState) {
+        when (favoriteState) {
+            FavoriteButtonUiState.IsFavorite -> binding.mbtIsFavorite.setBackgroundResource(R.drawable.ic_baseline_favorite)
+            FavoriteButtonUiState.NotFavorite -> binding.mbtIsFavorite.setBackgroundResource(R.drawable.ic_baseline_favorite_border)
+        }
+    }
+
+    private fun setupViews() {
+        characterModel?.let { character ->
+            setupName(character)
+            setupImage(character)
+            setupDescription(character)
+            setupFavoriteButton(character)
+        }
+    }
+
+    private fun setupName(character: CharacterModel) {
+        binding.tvCharacterName.text = character.name
+    }
+
+    private fun setupImage(character: CharacterModel) {
+        Glide.with(binding.root.context)
+            .load(character.thumbnail)
+            .placeholder(R.drawable.ic_placeholder)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .into(binding.ivCharacterImage)
+    }
+
+    private fun setupDescription(character: CharacterModel) {
+        binding.tvCharacterDescription.text = character.description
+    }
+
+    private fun setupFavoriteButton(character: CharacterModel) {
+        viewModel.setFavoriteButtonState(character.isFavorite)
+        binding.mbtIsFavorite.setOnClickListener { viewModel.favoriteStateChange(character) }
     }
 }

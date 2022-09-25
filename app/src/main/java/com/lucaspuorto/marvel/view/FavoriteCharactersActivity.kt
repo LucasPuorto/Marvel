@@ -5,10 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.lucaspuorto.marvel.databinding.ActivityFavoriteCharactersBinding
+import com.lucaspuorto.marvel.viewmodel.FavoriteCharactersViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteCharactersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavoriteCharactersBinding
+
+    private val viewModel: FavoriteCharactersViewModel by viewModel()
 
     private val adapter = FavoriteCharactersAdapter() { character ->
         startActivity(CharacterDetailsActivity.getIntent(this, character))
@@ -24,7 +28,14 @@ class FavoriteCharactersActivity : AppCompatActivity() {
         binding = ActivityFavoriteCharactersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupObserve()
         setupRecyclerView()
+    }
+
+    private fun setupObserve() {
+        viewModel.allFavoritesLiveData.observe(this) { favoriteCharacters ->
+            adapter.submitList(favoriteCharacters)
+        }
     }
 
     private fun setupRecyclerView() {
