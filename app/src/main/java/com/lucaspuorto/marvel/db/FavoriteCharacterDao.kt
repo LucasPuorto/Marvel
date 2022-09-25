@@ -3,18 +3,19 @@ package com.lucaspuorto.marvel.db
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.lucaspuorto.marvel.db.model.FavoriteCharacter
+import com.lucaspuorto.marvel.db.model.CharacterModel
 
 @Dao
 interface FavoriteCharacterDao {
 
     @Query("SELECT * FROM favorite_character")
-    fun getAll(): List<FavoriteCharacter>
+    fun getAll(): List<CharacterModel>
 
-    @Insert
-    fun insert(character: FavoriteCharacter)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(character: CharacterModel)
 
     @Delete
-     fun delete(character: FavoriteCharacter)
+    suspend fun delete(character: CharacterModel)
 }
