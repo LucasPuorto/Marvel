@@ -1,5 +1,7 @@
 package com.lucaspuorto.marvel.view
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +27,11 @@ class CharactersActivity : AppCompatActivity() {
         characterClick = { character -> startActivity(CharacterDetailsActivity.getIntent(this, character)) },
         favoriteClick = { character, position -> favoriteClick(character, position) }
     )
+
+    companion object {
+        fun getIntent(context: Context): Intent =
+            Intent(context, CharactersActivity::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
