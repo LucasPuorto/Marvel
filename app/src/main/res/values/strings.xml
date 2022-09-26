@@ -1,14 +1,21 @@
 <resources>
     <string name="app_name">Marvel</string>
 
+    //Common
+    <string name="adding_as_favorite">adicionar aos favoritos</string>
+    <string name="removig_as_favorite">remover dos favoritos</string>
+    <string name="back">voltar</string>
+
     // Menu
     <string name="search">Search</string>
     <string name="item">Item</string>
+    <string name="favorites_list">lista de favoritos</string>
 
     // Characters Activity
     <string name="search_list_empty_label">Não foi possível encontrar nenhum personagem com este nome, tente novamente</string>
     <string name="without_internet_error_label">Parece que está sem internet, verifique a sua conexão e tente novamente</string>
     <string name="something_error_label">Ops, algo aconteceu, tente novamente</string>
+    <string name="try_again">tentar novamente</string>
 
     // Favorites Activity
     <string name="favorites_list_empty_label">Você não possui nenhum personagem adicionado aos favoritos. Volte para a lista de personagens e adicione os seus personagens favoritos</string>
