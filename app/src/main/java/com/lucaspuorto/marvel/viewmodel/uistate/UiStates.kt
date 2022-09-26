@@ -4,7 +4,9 @@ import com.lucaspuorto.marvel.db.model.CharacterModel
 
 sealed class CharactersUiState {
     class Success(val charactersList: List<CharacterModel>) : CharactersUiState()
+    object Update : CharactersUiState()
     object Error : CharactersUiState()
+    object WithoutInternet : CharactersUiState()
 }
 
 sealed class LoadingUiState {

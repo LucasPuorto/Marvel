@@ -1,20 +1,24 @@
 package com.lucaspuorto.marvel.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lucaspuorto.marvel.db.model.CharacterModel
 import com.lucaspuorto.marvel.repository.MarvelRepository
+import com.lucaspuorto.marvel.util.NetworkManager.isOnline
 import com.lucaspuorto.marvel.viewmodel.mapper.CharacterResponseMapper
 import com.lucaspuorto.marvel.viewmodel.uistate.CharactersUiState
 import com.lucaspuorto.marvel.viewmodel.uistate.LoadingUiState
 import com.lucaspuorto.marvel.viewmodel.uistate.SearchCharacterUiState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class CharactersViewModel(
-    private val repository: MarvelRepository
+    private val repository: MarvelRepository,
+    private val application: Application
 ) : ViewModel() {
 
     companion object {
@@ -36,23 +40,29 @@ class CharactersViewModel(
         getCharacters()
     }
 
-    private fun getCharacters() {
+    fun getCharacters() {
         viewModelScope.launch(Dispatchers.IO) {
             loadingMutableLiveData.postValue(LoadingUiState.Show)
-            val response = repository.getCharacters()
-            response.body()?.data?.let { responseData ->
-                val mappedData = checkIfHasFavoriteCharacters(
-                    CharacterResponseMapper().transform(responseData.results)
-                )
+            if (isOnline(application)) {
+                val response = repository.getCharacters()
+                response.body()?.data?.let { responseData ->
+                    val mappedData = checkIfHasFavoriteCharacters(
+                        CharacterResponseMapper().transform(responseData.results)
+                    )
 
-                if (response.isSuccessful) {
-                    allCharacters.addAll(mappedData)
-                    charactersMutableLiveData.postValue(CharactersUiState.Success(mappedData))
-                    loadingMutableLiveData.postValue(LoadingUiState.Hide)
-                } else {
-                    setCharactersErrorState()
-                }
-            } ?: setCharactersErrorState()
+                    if (response.isSuccessful) {
+                        allCharacters.addAll(mappedData)
+                        charactersMutableLiveData.postValue(CharactersUiState.Success(mappedData))
+                        loadingMutableLiveData.postValue(LoadingUiState.Hide)
+                    } else {
+                        setCharactersErrorState()
+                    }
+                } ?: setCharactersErrorState()
+            } else {
+                delay(100)
+                charactersMutableLiveData.postValue(CharactersUiState.WithoutInternet)
+                loadingMutableLiveData.postValue(LoadingUiState.Hide)
+            }
         }
     }
 
@@ -77,7 +87,7 @@ class CharactersViewModel(
     }
 
     fun updateCharactersList() {
-        charactersMutableLiveData.postValue(CharactersUiState.Success(checkIfHasFavoriteCharacters(allCharacters)))
+        charactersMutableLiveData.postValue(CharactersUiState.Update)
     }
 
     fun searchFilter(searchText: String?) {
