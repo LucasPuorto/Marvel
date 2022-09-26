@@ -53,8 +53,18 @@ class CharacterDetailsActivity : AppCompatActivity() {
 
     private fun handlerFavoriteState(favoriteState: FavoriteButtonUiState) {
         when (favoriteState) {
-            FavoriteButtonUiState.IsFavorite -> binding.mbtIsFavorite.setBackgroundResource(R.drawable.ic_baseline_favorite)
-            FavoriteButtonUiState.NotFavorite -> binding.mbtIsFavorite.setBackgroundResource(R.drawable.ic_baseline_favorite_border)
+            FavoriteButtonUiState.IsFavorite -> {
+                binding.mbtIsFavorite.apply {
+                    contentDescription = getString(R.string.adding_as_favorite)
+                    setBackgroundResource(R.drawable.ic_baseline_favorite)
+                }
+            }
+            FavoriteButtonUiState.NotFavorite -> {
+                binding.mbtIsFavorite.apply {
+                    contentDescription = getString(R.string.removig_as_favorite)
+                    setBackgroundResource(R.drawable.ic_baseline_favorite_border)
+                }
+            }
         }
     }
 
@@ -64,6 +74,9 @@ class CharacterDetailsActivity : AppCompatActivity() {
             setupImage(character)
             setupDescription(character)
             setupFavoriteButton(character)
+        }
+        binding.mbtBack.setOnClickListener {
+            finish()
         }
     }
 

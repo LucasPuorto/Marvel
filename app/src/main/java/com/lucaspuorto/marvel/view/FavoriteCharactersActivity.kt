@@ -33,7 +33,7 @@ class FavoriteCharactersActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupObserve()
-        setupRecyclerView()
+        setupViews()
     }
 
     private fun setupObserve() {
@@ -57,6 +57,11 @@ class FavoriteCharactersActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun setupViews() {
+        setupRecyclerView()
+        binding.mbtBack.setOnClickListener { finish() }
     }
 
     private fun setupRecyclerView() {

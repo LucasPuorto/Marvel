@@ -43,9 +43,14 @@ class CharactersAdapter(
                     .into(binding.ivCharacter)
                 mbtIsFavorite.apply {
                     setOnClickListener { favoriteClick.invoke(character, position) }
-                    mbtIsFavorite.setBackgroundResource(
-                        if (character.isFavorite) R.drawable.ic_baseline_favorite
-                        else R.drawable.ic_baseline_favorite_border
+                    setBackgroundResource(
+                        if (character.isFavorite) {
+                            contentDescription = context.getString(R.string.adding_as_favorite)
+                            R.drawable.ic_baseline_favorite
+                        } else {
+                            contentDescription = context.getString(R.string.removig_as_favorite)
+                            R.drawable.ic_baseline_favorite_border
+                        }
                     )
                 }
                 root.setOnClickListener { characterClick.invoke(character) }

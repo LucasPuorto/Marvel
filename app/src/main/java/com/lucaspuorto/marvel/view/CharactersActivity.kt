@@ -184,7 +184,7 @@ class CharactersActivity : AppCompatActivity() {
 
     private fun setupFavoritesButton(menu: Menu?) {
         val favorites = menu?.findItem(R.id.app_bar_favorites_character)
-
+        favorites?.contentDescription = getString(R.string.favorites_list)
         favorites?.setOnMenuItemClickListener {
             startActivity(FavoriteCharactersActivity.getIntent(this))
             return@setOnMenuItemClickListener true
