@@ -2,7 +2,6 @@ package com.lucaspuorto.marvel.view
 
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.lucaspuorto.marvel.R
@@ -34,12 +33,12 @@ class CharactersActivity : AppCompatActivity() {
 
         setupObserve()
         setupRecyclerView()
+        setupErrorRetryClick()
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.updateCharactersList()
-        adapter.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -79,27 +78,45 @@ class CharactersActivity : AppCompatActivity() {
                         visible
                         startShimmer()
                     }
+                    includeEmptyList.root.gone
+                    includeError.root.gone
                 }
             }
             LoadingUiState.Hide -> {
-                binding.apply {
-                    rvCharacters.visible
-                    shimmerCharacters.apply {
-                        gone
-                        stopShimmer()
-                    }
+                binding.shimmerCharacters.apply {
+                    gone
+                    stopShimmer()
                 }
             }
         }
     }
 
-    //TODO: Remove Toast
     private fun handlerCharacters(charactersState: CharactersUiState) {
         when (charactersState) {
             is CharactersUiState.Success -> {
                 adapter.submitList(charactersState.charactersList)
+                binding.rvCharacters.visible
             }
-            CharactersUiState.Error -> Toast.makeText(this@CharactersActivity, "Erro", Toast.LENGTH_LONG).show()
+            CharactersUiState.Update -> {
+                adapter.notifyDataSetChanged()
+            }
+            CharactersUiState.Error -> {
+                setupErrorState(getString(R.string.something_error_label))
+            }
+            CharactersUiState.WithoutInternet -> {
+                setupErrorState(getString(R.string.without_internet_error_label))
+            }
+        }
+    }
+
+    private fun setupErrorState(errorText: String) {
+        binding.apply {
+            rvCharacters.gone
+            includeError.root.gone
+            includeError.apply {
+                root.visible
+                tvEmptyList.text = errorText
+            }
         }
     }
 
@@ -127,15 +144,23 @@ class CharactersActivity : AppCompatActivity() {
                     root.visible
                     tvEmptyList.text = getString(R.string.search_list_empty_label)
                 }
+                includeError.root.gone
             } else {
                 rvCharacters.visible
                 includeEmptyList.root.gone
+                includeError.root.gone
             }
         }
     }
 
     private fun setupRecyclerView() {
         binding.rvCharacters.adapter = adapter
+    }
+
+    private fun setupErrorRetryClick() {
+        binding.includeError.mbtErrorRetry.setOnClickListener {
+            viewModel.getCharacters()
+        }
     }
 
     private fun setupCharacterSearch(menu: Menu?) {
