@@ -17,7 +17,7 @@ class MarvelRepositoryImpl(
 ) : MarvelRepository {
 
     override suspend fun getCharacters(): Response<CharactersResponse> =
-        withContext(Dispatchers.Default) {
+        withContext(Dispatchers.IO) {
             api.getCharacters(timestamp, hash, publicKey)
         }
 
