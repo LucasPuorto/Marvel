@@ -19,7 +19,7 @@ Uma melhoria interessante seria implementar uma busca pelo nome do personagem, c
 
 ### Iniciando o projeto
 
-O App pode ser acessado atraves do [LINK](https://drive.google.com/file/d/1RzgikbERoBbXzCBcWRHoAO9c8R5hrcJn/view?usp=sharing)
+O App pode ser acessado atraves do [LINK](https://drive.google.com/file/d/1T0pzK_BzlqY4MLrDe3B8-XfCyb47Kt4P/view?usp=sharing)
 
 1. Para obter suas credenciais, acesse o https://developer.marvel.com/;
 2. Clone o repositorio;
