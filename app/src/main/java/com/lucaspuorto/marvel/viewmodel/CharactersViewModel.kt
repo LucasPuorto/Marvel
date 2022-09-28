@@ -87,6 +87,7 @@ class CharactersViewModel(
     }
 
     fun updateCharactersList() {
+        checkIfHasFavoriteCharacters(allCharacters)
         charactersMutableLiveData.postValue(CharactersUiState.Update)
     }
 

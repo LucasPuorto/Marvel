@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ActivityFavoriteCharactersBinding
+import com.lucaspuorto.marvel.util.clickWithDebounce
 import com.lucaspuorto.marvel.util.gone
 import com.lucaspuorto.marvel.util.visible
 import com.lucaspuorto.marvel.viewmodel.FavoriteCharactersViewModel
@@ -36,6 +37,11 @@ class FavoriteCharactersActivity : AppCompatActivity() {
         setupViews()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllFavorites()
+    }
+
     private fun setupObserve() {
         viewModel.allFavoritesLiveData.observe(this) { favoriteCharacters ->
             handlerFavoritesCharacters(favoriteCharacters)
@@ -61,7 +67,7 @@ class FavoriteCharactersActivity : AppCompatActivity() {
 
     private fun setupViews() {
         setupRecyclerView()
-        binding.mbtBack.setOnClickListener { finish() }
+        binding.mbtBack.clickWithDebounce { finish() }
     }
 
     private fun setupRecyclerView() {

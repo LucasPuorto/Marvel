@@ -10,6 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ItemFavoriteCharcterBinding
 import com.lucaspuorto.marvel.db.model.CharacterModel
+import com.lucaspuorto.marvel.util.clickWithDebounce
 
 class FavoriteCharactersAdapter(
     private val characterClick: (CharacterModel) -> Unit
@@ -40,7 +41,7 @@ class FavoriteCharactersAdapter(
                     .placeholder(R.drawable.ic_placeholder)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(binding.ivCharacter)
-                root.setOnClickListener { characterClick.invoke(character) }
+                root.clickWithDebounce { characterClick.invoke(character) }
             }
         }
     }

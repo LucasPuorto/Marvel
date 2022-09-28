@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ActivityCharactersBinding
 import com.lucaspuorto.marvel.db.model.CharacterModel
+import com.lucaspuorto.marvel.util.clickWithDebounce
 import com.lucaspuorto.marvel.util.gone
 import com.lucaspuorto.marvel.util.visible
 import com.lucaspuorto.marvel.viewmodel.CharactersViewModel
@@ -165,7 +166,7 @@ class CharactersActivity : AppCompatActivity() {
     }
 
     private fun setupErrorRetryClick() {
-        binding.includeError.mbtErrorRetry.setOnClickListener {
+        binding.includeError.mbtErrorRetry.clickWithDebounce {
             viewModel.getCharacters()
         }
     }
