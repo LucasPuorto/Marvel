@@ -10,6 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.lucaspuorto.marvel.R
 import com.lucaspuorto.marvel.databinding.ActivityCharacterDetailsBinding
 import com.lucaspuorto.marvel.db.model.CharacterModel
+import com.lucaspuorto.marvel.util.clickWithDebounce
 import com.lucaspuorto.marvel.viewmodel.CharacterDetailsViewModel
 import com.lucaspuorto.marvel.viewmodel.uistate.FavoriteButtonUiState
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -75,7 +76,7 @@ class CharacterDetailsActivity : AppCompatActivity() {
             setupDescription(character)
             setupFavoriteButton(character)
         }
-        binding.mbtBack.setOnClickListener {
+        binding.mbtBack.clickWithDebounce {
             finish()
         }
     }
@@ -98,6 +99,6 @@ class CharacterDetailsActivity : AppCompatActivity() {
 
     private fun setupFavoriteButton(character: CharacterModel) {
         viewModel.setFavoriteButtonState(character.isFavorite)
-        binding.mbtIsFavorite.setOnClickListener { viewModel.favoriteStateChange(character) }
+        binding.mbtIsFavorite.clickWithDebounce { viewModel.favoriteStateChange(character) }
     }
 }

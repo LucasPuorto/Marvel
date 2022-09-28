@@ -16,11 +16,7 @@ class FavoriteCharactersViewModel(
     private val allFavoritesMutableLiveData = MutableLiveData<FavoritesUiState>()
     val allFavoritesLiveData: LiveData<FavoritesUiState> get() = allFavoritesMutableLiveData
 
-    init {
-        getAllFavorites()
-    }
-
-    private fun getAllFavorites() {
+     fun getAllFavorites() {
         viewModelScope.launch(Dispatchers.IO) {
             val favorites = repository.getAllFavorites()
             if (favorites.isNotEmpty()) {
