@@ -20,7 +20,7 @@ Uma melhoria interessante seria implementar uma busca pelo nome do personagem, c
 ### Iniciando o projeto
 
 1. Para obter suas credenciais, acesse o https://developer.marvel.com/;
-2. Clene o repositorio;
+2. Clone o repositorio;
 3. Para que o app funcione adequandamente, deve ser criado o arquivo `apikey.properties` na pasta raiz do projeto, e criar a chave privada `PRIVATE_KEY` e a publica `PUBLIC_KEY`, como na imagem abaixo 
 
 
